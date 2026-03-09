@@ -31,7 +31,7 @@ const OverviewPage = () => {
           action={
             <div className="flex items-center gap-3">
               <AgentOrb active={mockLauncherStatus.agentActive} size="md" />
-              <span className="text-xs font-mono text-primary">
+              <span className="text-xs font-mono text-success">
                 {mockLauncherStatus.agentActive ? "Agent Active" : "Agent Idle"}
               </span>
             </div>
