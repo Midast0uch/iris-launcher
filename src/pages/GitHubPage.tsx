@@ -125,7 +125,7 @@ const GitHubPage = () => {
                 value={tokenInput}
                 onChange={(e) => setTokenInput(e.target.value)}
                 placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"
-                className="font-mono bg-background border-border text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-primary"
+                className="font-mono glass-subtle border-0 text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-primary"
               />
               <Button
                 className="w-full font-mono bg-primary text-primary-foreground hover:bg-primary/90"
