@@ -91,6 +91,7 @@ const GitHubPage = () => {
     setSelectedRepo(null);
     setTokenInput("");
     setStep("idle");
+    setGitHubConnected(false);
   };
 
   const handleGenerateKey = () => {
