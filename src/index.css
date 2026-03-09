@@ -5,7 +5,8 @@
 @import url('https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
 
 @layer base {
-  :root {
+  :root,
+  .dark {
     --background: 225 12% 7%;
     --foreground: 0 0% 96%;
 
@@ -64,6 +65,75 @@
     --glass-border: hsl(0 0% 100% / 0.06);
     --glass-highlight: hsl(0 0% 100% / 0.03);
     --glass-inner-glow: inset 0 1px 0 0 hsl(0 0% 100% / 0.06);
+
+    --parallax-layer1: hsl(215 100% 60% / 0.12);
+    --parallax-layer2: hsl(275 65% 62% / 0.10);
+    --parallax-layer3: hsl(215 80% 50% / 0.09);
+  }
+
+  .light {
+    --background: 220 20% 97%;
+    --foreground: 225 15% 15%;
+
+    --card: 0 0% 100% / 0.6;
+    --card-foreground: 225 15% 15%;
+
+    --popover: 0 0% 100% / 0.85;
+    --popover-foreground: 225 15% 15%;
+
+    --primary: 215 90% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 15% 92% / 0.6;
+    --secondary-foreground: 225 12% 35%;
+
+    --muted: 220 12% 93% / 0.5;
+    --muted-foreground: 220 8% 46%;
+
+    --accent: 275 55% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 65% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 152 55% 42%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 40 85% 48%;
+    --warning-foreground: 40 100% 10%;
+
+    --border: 220 15% 88% / 0.6;
+    --input: 220 12% 90% / 0.5;
+    --ring: 215 90% 50%;
+
+    --radius: 1rem;
+
+    --sidebar-background: 0 0% 100% / 0.4;
+    --sidebar-foreground: 220 8% 40%;
+    --sidebar-primary: 215 90% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 15% 94% / 0.5;
+    --sidebar-accent-foreground: 225 15% 15%;
+    --sidebar-border: 220 15% 88% / 0.4;
+    --sidebar-ring: 215 90% 50%;
+
+    --glow-primary: 0 0 24px hsl(215 90% 50% / 0.12);
+    --glow-accent: 0 0 24px hsl(275 55% 55% / 0.12);
+    --glow-success: 0 0 16px hsl(152 55% 42% / 0.12);
+    --glow-warning: 0 0 16px hsl(40 85% 48% / 0.12);
+    --glow-destructive: 0 0 16px hsl(0 65% 50% / 0.12);
+
+    --font-mono: 'JetBrains Mono', monospace;
+    --font-display: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+
+    --glass-bg: hsl(0 0% 100% / 0.45);
+    --glass-border: hsl(0 0% 0% / 0.06);
+    --glass-highlight: hsl(0 0% 100% / 0.5);
+    --glass-inner-glow: inset 0 1px 0 0 hsl(0 0% 100% / 0.6);
+
+    --parallax-layer1: hsl(215 90% 50% / 0.06);
+    --parallax-layer2: hsl(275 55% 55% / 0.05);
+    --parallax-layer3: hsl(215 70% 45% / 0.04);
   }
 }
 
