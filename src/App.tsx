@@ -9,7 +9,7 @@ import { AppProvider, useApp } from "@/contexts/AppContext";
 import OverviewPage from "./pages/OverviewPage";
 import IdentityPage from "./pages/IdentityPage";
 import ProjectsPage from "./pages/ProjectsPage";
-import PermissionsPage from "./pages/PermissionsPage";
+import TailscalePage from "./pages/TailscalePage";
 import GitPage from "./pages/GitPage";
 import DiffReviewPage from "./pages/DiffReviewPage";
 import RebuildPage from "./pages/RebuildPage";
