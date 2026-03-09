@@ -13,6 +13,7 @@ import TailscalePage from "./pages/TailscalePage";
 import GitPage from "./pages/GitPage";
 import DiffReviewPage from "./pages/DiffReviewPage";
 import RebuildPage from "./pages/RebuildPage";
+import GitHubPage from "./pages/GitHubPage";
 import FirstRunPage from "./pages/FirstRunPage";
 import ModeSelectPage from "./pages/ModeSelectPage";
 import NotFound from "./pages/NotFound";
