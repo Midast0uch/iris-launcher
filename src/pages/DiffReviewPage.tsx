@@ -21,7 +21,7 @@ const DiffReviewPage = () => {
 
       <div className="space-y-4">
         {mockPendingWrites.map((pw) => (
-          <div key={pw.id} className="bg-card rounded-lg border border-warning/20 overflow-hidden">
+          <div key={pw.id} className="glass rounded-xl border-warning/20 overflow-hidden">
             {/* Header */}
             <div className="flex items-center justify-between p-4 border-b border-border">
               <div className="flex items-center gap-3">
