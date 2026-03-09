@@ -14,6 +14,8 @@ interface AppContextType {
   mode: AppMode;
   setMode: (mode: AppMode) => void;
   clearIdentity: () => void;
+  gitHubConnected: boolean;
+  setGitHubConnected: (connected: boolean) => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
