@@ -33,13 +33,13 @@ export function ParallaxBackground() {
       {/* Base gradient */}
       <div className="absolute inset-0 bg-background" />
 
-      {/* Parallax gradient layers */}
+      {/* Parallax gradient layers — neutral greys in dark, tinted in light */}
       <motion.div
         className="absolute -inset-[10%]"
         style={{
           x: layer1X,
           y: layer1Y,
-          background: "radial-gradient(ellipse 80% 50% at 15% -5%, hsl(215 100% 60% / 0.12) 0%, transparent 60%)",
+          background: "radial-gradient(ellipse 80% 50% at 15% -5%, hsl(0 0% 100% / 0.04) 0%, transparent 60%)",
         }}
       />
       <motion.div
@@ -47,7 +47,7 @@ export function ParallaxBackground() {
         style={{
           x: layer2X,
           y: layer2Y,
-          background: "radial-gradient(ellipse 60% 40% at 85% 5%, hsl(275 65% 62% / 0.10) 0%, transparent 55%)",
+          background: "radial-gradient(ellipse 60% 40% at 85% 5%, hsl(0 0% 100% / 0.03) 0%, transparent 55%)",
         }}
       />
       <motion.div
@@ -55,7 +55,7 @@ export function ParallaxBackground() {
         style={{
           x: layer3X,
           y: layer3Y,
-          background: "radial-gradient(ellipse 70% 60% at 50% 110%, hsl(215 80% 50% / 0.09) 0%, transparent 55%)",
+          background: "radial-gradient(ellipse 70% 60% at 50% 110%, hsl(0 0% 100% / 0.035) 0%, transparent 55%)",
         }}
       />
       <motion.div
@@ -63,7 +63,7 @@ export function ParallaxBackground() {
         style={{
           x: layer4X,
           y: layer4Y,
-          background: "radial-gradient(ellipse 50% 30% at -5% 50%, hsl(152 60% 48% / 0.06) 0%, transparent 45%)",
+          background: "radial-gradient(ellipse 50% 30% at -5% 50%, hsl(0 0% 100% / 0.02) 0%, transparent 45%)",
         }}
       />
       <motion.div
@@ -71,7 +71,7 @@ export function ParallaxBackground() {
         style={{
           x: layer2X,
           y: layer3Y,
-          background: "radial-gradient(ellipse 40% 40% at 100% 60%, hsl(275 65% 62% / 0.05) 0%, transparent 50%)",
+          background: "radial-gradient(ellipse 40% 40% at 100% 60%, hsl(0 0% 100% / 0.025) 0%, transparent 50%)",
         }}
       />
 
