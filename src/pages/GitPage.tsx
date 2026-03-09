@@ -3,10 +3,11 @@ import { SectionHeader, DataRow, StatusBadge, MetricCard } from "@/components/da
 import { mockGitStatus } from "@/lib/mock-data";
 import { Button } from "@/components/ui/button";
 import { PageTransition } from "@/components/dashboard/PageTransition";
+import GitHubGate from "@/components/dashboard/GitHubGate";
 
 const GitPage = () => {
   return (
-    <PageTransition><div className="space-y-8">
+    <GitHubGate><PageTransition><div className="space-y-8">
       <SectionHeader
         title="Git & Source Control"
         description="Developer Mode — every agent write is a recoverable git commit"
