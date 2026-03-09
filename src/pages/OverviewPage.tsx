@@ -1,10 +1,22 @@
 import { Activity, Cpu, HardDrive, Radio, Shield, Clock } from "lucide-react";
 import { MetricCard, SectionHeader, StatusBadge, DataRow } from "@/components/dashboard/DashboardPrimitives";
+import { LiquidIcon } from "@/components/dashboard/LiquidIcon";
 import { mockLauncherStatus, mockGitStatus, mockPendingWrites } from "@/lib/mock-data";
 import { AgentOrb } from "@/components/dashboard/AgentOrb";
 import { useUptime } from "@/hooks/use-uptime";
 import { PageTransition } from "@/components/dashboard/PageTransition";
 import { useApp } from "@/contexts/AppContext";
+import { motion } from "framer-motion";
+
+const stagger = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.06 } },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 12 },
+  show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 25 } },
+};
 
 const OverviewPage = () => {
   const uptime = useUptime(16320);
@@ -26,54 +38,26 @@ const OverviewPage = () => {
           }
         />
 
-        {/* Status badges row */}
-        <div className="flex flex-wrap gap-2">
+        <motion.div className="flex flex-wrap gap-2" variants={stagger} initial="hidden" animate="show">
           <StatusBadge status="online" label="SYSTEM ONLINE" />
           <StatusBadge status={mockLauncherStatus.agentActive ? "online" : "offline"} label={mockLauncherStatus.agentActive ? "AGENT ACTIVE" : "AGENT IDLE"} />
           <StatusBadge status={mockLauncherStatus.driveConnected ? "online" : "warning"} label={mockLauncherStatus.driveConnected ? "DRIVE OK" : "DRIVE DISCONNECTED"} />
-          
           {mockLauncherStatus.pendingWrites > 0 && (
             <StatusBadge status="warning" label={`${mockLauncherStatus.pendingWrites} PENDING WRITES`} />
           )}
-        </div>
+        </motion.div>
 
-        {/* Metric cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <MetricCard
-            label="Mode"
-            value={(mode || "personal").toUpperCase()}
-            icon={<Shield className="h-4 w-4" />}
-            accent={mode === "developer" ? "accent" : "primary"}
-            subtitle={`${mode === "developer" ? "Developer" : "Personal"} mode`}
-          />
-          <MetricCard
-            label="Uptime"
-            value={uptime}
-            icon={<Clock className="h-4 w-4" />}
-            accent="success"
-            subtitle="Live counter"
-          />
-          <MetricCard
-            label="Pending Reviews"
-            value={mockPendingWrites.length}
-            icon={<Activity className="h-4 w-4" />}
-            accent={mockPendingWrites.length > 0 ? "warning" : "success"}
-            subtitle="Diff reviews queued"
-          />
-          <MetricCard
-            label="Node ID"
-            value={identity ? identity.nodeId.slice(0, 8) : "—"}
-            icon={<Radio className="h-4 w-4" />}
-            accent="primary"
-            subtitle="Post-quantum identity"
-          />
-        </div>
+        <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" variants={stagger} initial="hidden" animate="show">
+          <MetricCard label="Mode" value={(mode || "personal").toUpperCase()} icon={<Shield className="h-4 w-4" />} accent={mode === "developer" ? "accent" : "primary"} subtitle={`${mode === "developer" ? "Developer" : "Personal"} mode`} />
+          <MetricCard label="Uptime" value={uptime} icon={<Clock className="h-4 w-4" />} accent="success" subtitle="Live counter" />
+          <MetricCard label="Pending Reviews" value={mockPendingWrites.length} icon={<Activity className="h-4 w-4" />} accent={mockPendingWrites.length > 0 ? "warning" : "success"} subtitle="Diff reviews queued" />
+          <MetricCard label="Node ID" value={identity ? identity.nodeId.slice(0, 8) : "—"} icon={<Radio className="h-4 w-4" />} accent="primary" subtitle="Post-quantum identity" />
+        </motion.div>
 
-        {/* Two-column details */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="glass rounded-xl p-5">
-            <h3 className="text-sm font-bold text-foreground mb-4 flex items-center gap-2">
-              <Cpu className="h-4 w-4 text-primary" />
+        <motion.div className="grid grid-cols-1 lg:grid-cols-2 gap-6" variants={stagger} initial="hidden" animate="show">
+          <motion.div variants={item} className="glass-card rounded-2xl p-6">
+            <h3 className="text-sm font-semibold text-foreground mb-5 flex items-center gap-3">
+              <LiquidIcon color="primary" size="sm"><Cpu className="h-4 w-4" /></LiquidIcon>
               System Health
             </h3>
             <div className="space-y-0">
@@ -83,29 +67,31 @@ const OverviewPage = () => {
               <DataRow label="Version" value={mockLauncherStatus.version} />
               <DataRow label="Biometric" value={identity ? "Active (TPM)" : "No identity"} />
             </div>
-          </div>
+          </motion.div>
 
-          <div className="glass rounded-xl p-5">
-            <h3 className="text-sm font-bold text-foreground mb-4 flex items-center gap-2">
-              <HardDrive className="h-4 w-4 text-primary" />
+          <motion.div variants={item} className="glass-card rounded-2xl p-6">
+            <h3 className="text-sm font-semibold text-foreground mb-5 flex items-center gap-3">
+              <LiquidIcon color="primary" size="sm"><HardDrive className="h-4 w-4" /></LiquidIcon>
               Git Status
             </h3>
             <div className="space-y-0">
               <DataRow label="Branch" value={mockGitStatus.branch} />
               <DataRow label="State" value={mockGitStatus.clean ? "Clean" : "Uncommitted changes"} />
               <DataRow label="Last Commit" value={mockGitStatus.lastCommit} />
-              <DataRow label="Message" value={
-                <span className="text-xs truncate max-w-[200px] inline-block">{mockGitStatus.lastCommitMessage}</span>
-              } />
+              <DataRow label="Message" value={<span className="text-xs truncate max-w-[200px] inline-block">{mockGitStatus.lastCommitMessage}</span>} />
               <DataRow label="Last Good" value={mockGitStatus.lastGoodCommit} />
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
-        {/* Activity log */}
-        <div className="glass rounded-xl p-5">
-          <h3 className="text-sm font-bold text-foreground mb-4">Recent Activity</h3>
-          <div className="space-y-2 font-mono text-xs">
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, type: "spring", stiffness: 300, damping: 25 }}
+          className="glass-card rounded-2xl p-6"
+        >
+          <h3 className="text-sm font-semibold text-foreground mb-5">Recent Activity</h3>
+          <div className="space-y-1 font-mono text-xs">
             {[
               { time: "14:25", event: "Pending write queued: src/identity.rs", type: "warning" as const },
               { time: "14:22", event: "Pending write queued: src/commands.rs", type: "warning" as const },
@@ -115,21 +101,23 @@ const OverviewPage = () => {
               { time: "10:14", event: "Cargo build triggered by user", type: "primary" as const },
               { time: "08:30", event: "Session started — identity loaded from keychain", type: "success" as const },
             ].map((entry, i) => {
-              const colors = {
-                warning: "text-warning",
-                primary: "text-primary",
-                success: "text-success",
-              };
+              const colors = { warning: "text-warning", primary: "text-primary", success: "text-success" };
               return (
-                <div key={i} className="flex items-center gap-3 py-1.5 border-b border-[hsl(0_0%_100%/0.05)] last:border-0">
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: -8 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.35 + i * 0.04, type: "spring", stiffness: 300, damping: 25 }}
+                  className="flex items-center gap-3 py-2 border-b border-[hsl(0_0%_100%/0.04)] last:border-0 hover:bg-[hsl(0_0%_100%/0.02)] rounded-lg px-2 -mx-2 transition-colors"
+                >
                   <span className="text-muted-foreground w-12">{entry.time}</span>
-                  <span className={`h-1 w-1 rounded-full ${colors[entry.type].replace("text-", "bg-")}`} />
+                  <span className={`h-1.5 w-1.5 rounded-full ${colors[entry.type].replace("text-", "bg-")}`} />
                   <span className={colors[entry.type]}>{entry.event}</span>
-                </div>
+                </motion.div>
               );
             })}
           </div>
-        </div>
+        </motion.div>
       </div>
     </PageTransition>
   );

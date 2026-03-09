@@ -25,9 +25,9 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => (
     <div className="min-h-screen flex w-full">
       <AppSidebar />
       <div className="flex-1 flex flex-col">
-        <header className="h-12 flex items-center border-b border-[hsl(0_0%_100%/0.06)] px-4 glass-subtle">
-          <SidebarTrigger className="text-muted-foreground hover:text-foreground" />
-          <span className="ml-3 text-[10px] uppercase tracking-widest text-muted-foreground">
+        <header className="h-12 flex items-center border-b border-[hsl(0_0%_100%/0.04)] px-4 glass-subtle">
+          <SidebarTrigger className="text-muted-foreground hover:text-foreground transition-colors" />
+          <span className="ml-3 text-[10px] uppercase tracking-[0.2em] text-muted-foreground font-medium">
             IRIS Launcher
           </span>
         </header>
@@ -44,16 +44,11 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => (
 const AppRoutes = () => {
   const { mode } = useApp();
 
-  // No mode selected yet — redirect to mode select
   if (!mode) {
     return (
       <Routes>
         <Route path="/mode-select" element={<ModeSelectPage />} />
-        <Route path="/first-run" element={
-          <div className="min-h-screen grid-pattern scanline">
-            <FirstRunPage />
-          </div>
-        } />
+        <Route path="/first-run" element={<div className="min-h-screen"><FirstRunPage /></div>} />
         <Route path="*" element={<Navigate to="/mode-select" replace />} />
       </Routes>
     );
@@ -61,11 +56,7 @@ const AppRoutes = () => {
 
   return (
     <Routes>
-      <Route path="/first-run" element={
-        <div className="min-h-screen grid-pattern scanline">
-          <FirstRunPage />
-        </div>
-      } />
+      <Route path="/first-run" element={<div className="min-h-screen"><FirstRunPage /></div>} />
       <Route path="/mode-select" element={<ModeSelectPage />} />
       <Route path="*" element={
         <DashboardLayout>
