@@ -83,6 +83,7 @@ const GitHubPage = () => {
       avatarUrl: "",
     });
     setStep("connected");
+    setGitHubConnected(true);
   };
 
   const handleDisconnect = () => {
