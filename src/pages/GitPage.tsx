@@ -64,7 +64,7 @@ const GitPage = () => {
             { hash: "a9f3e2d", message: "agent: refactor file_download error handling", time: "6 hours ago", auto: true },
             { hash: "8c7b1a4", message: "user: manual commit before experiment", time: "1 day ago", auto: false },
           ].map((commit) => (
-            <div key={commit.hash} className="flex items-center gap-3 py-2 border-b border-border/30 last:border-0">
+            <div key={commit.hash} className="flex items-center gap-3 py-2 border-b border-[hsl(0_0%_100%/0.05)] last:border-0">
               <span className="font-mono text-xs text-primary w-16">{commit.hash}</span>
               <div className="flex-1">
                 <span className="text-xs font-mono text-foreground">{commit.message}</span>
