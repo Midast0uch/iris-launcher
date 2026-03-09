@@ -103,7 +103,7 @@ const OverviewPage = () => {
         </div>
 
         {/* Activity log */}
-        <div className="bg-card rounded-lg border border-border p-5">
+        <div className="glass rounded-xl p-5">
           <h3 className="text-sm font-bold text-foreground mb-4">Recent Activity</h3>
           <div className="space-y-2 font-mono text-xs">
             {[
