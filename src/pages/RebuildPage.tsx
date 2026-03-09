@@ -2,6 +2,7 @@ import { Wrench, Play, CheckCircle, AlertTriangle, Clock } from "lucide-react";
 import { SectionHeader, DataRow, StatusBadge, MetricCard } from "@/components/dashboard/DashboardPrimitives";
 import { mockRebuildStatus } from "@/lib/mock-data";
 import { Button } from "@/components/ui/button";
+import { PageTransition } from "@/components/dashboard/PageTransition";
 
 const RebuildPage = () => {
   return (
