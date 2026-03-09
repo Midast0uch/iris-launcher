@@ -140,7 +140,7 @@ const TailscalePage = () => {
             </div>
 
             {/* Nodes list */}
-            <div className="bg-card rounded-lg border border-border divide-y divide-border">
+            <div className="glass rounded-xl divide-y divide-[hsl(0_0%_100%/0.05)]">
               <div className="p-4 flex items-center justify-between">
                 <h3 className="text-sm font-bold text-foreground flex items-center gap-2">
                   <Network className="h-4 w-4 text-primary" />

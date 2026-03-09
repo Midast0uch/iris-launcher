@@ -122,7 +122,7 @@ const IdentityPage = () => {
                 {copied ? "Copied" : "Copy"}
               </Button>
             </div>
-            <div className="bg-background rounded border border-border p-3 font-mono text-xs text-primary break-all leading-relaxed">
+            <div className="glass-subtle rounded-lg p-3 font-mono text-xs text-primary break-all leading-relaxed">
               {identity.publicKey}
             </div>
           </div>
