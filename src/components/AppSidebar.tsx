@@ -12,6 +12,7 @@ import {
 import { NavLink } from "@/components/NavLink";
 import { useApp } from "@/contexts/AppContext";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 import {
   Sidebar,
   SidebarContent,
@@ -47,16 +48,21 @@ export function AppSidebar() {
   const navigate = useNavigate();
 
   return (
-    <Sidebar collapsible="icon" className="border-r border-[hsl(0_0%_100%/0.06)]">
+    <Sidebar collapsible="icon" className="border-r border-[hsl(0_0%_100%/0.04)]">
       <SidebarHeader className="p-4">
         {!collapsed && (
           <div className="flex items-center gap-3">
-            <div className="h-9 w-9 rounded-xl bg-primary/15 border border-primary/20 flex items-center justify-center">
+            <motion.div
+              className="h-9 w-9 rounded-xl liquid-icon liquid-icon-primary flex items-center justify-center"
+              whileHover={{ scale: 1.08, rotate: 2 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 400, damping: 15 }}
+            >
               <span className="font-mono text-sm font-bold text-primary">IR</span>
-            </div>
+            </motion.div>
             <div>
-              <h2 className="text-sm font-semibold text-foreground">IRIS Launcher</h2>
-              <p className="text-[10px] text-muted-foreground">
+              <h2 className="text-sm font-semibold text-foreground tracking-tight">IRIS Launcher</h2>
+              <p className="text-[10px] text-muted-foreground tracking-wide">
                 {mode === "developer" ? "Developer" : "Personal"}
               </p>
             </div>
@@ -64,16 +70,20 @@ export function AppSidebar() {
         )}
         {collapsed && (
           <div className="flex justify-center">
-            <div className="h-9 w-9 rounded-xl bg-primary/15 border border-primary/20 flex items-center justify-center">
+            <motion.div
+              className="h-9 w-9 rounded-xl liquid-icon liquid-icon-primary flex items-center justify-center"
+              whileHover={{ scale: 1.1 }}
+              transition={{ type: "spring", stiffness: 400, damping: 15 }}
+            >
               <span className="font-mono text-xs font-bold text-primary">IR</span>
-            </div>
+            </motion.div>
           </div>
         )}
       </SidebarHeader>
 
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel className="text-[10px] font-medium uppercase tracking-widest text-muted-foreground px-3">
+          <SidebarGroupLabel className="text-[10px] font-medium uppercase tracking-[0.15em] text-muted-foreground px-3">
             System
           </SidebarGroupLabel>
           <SidebarGroupContent>
@@ -84,11 +94,11 @@ export function AppSidebar() {
                     <NavLink
                       to={item.url}
                       end={item.url === "/"}
-                      className="text-sidebar-foreground hover:bg-[hsl(0_0%_100%/0.06)] hover:text-foreground rounded-lg transition-all"
-                      activeClassName="bg-primary/10 text-primary"
+                      className="text-sidebar-foreground hover:bg-[hsl(0_0%_100%/0.04)] hover:text-foreground rounded-xl transition-all duration-200"
+                      activeClassName="bg-primary/8 text-primary"
                     >
                       <item.icon className="mr-2 h-4 w-4" />
-                      {!collapsed && <span className="text-sm">{item.title}</span>}
+                      {!collapsed && <span className="text-sm tracking-wide">{item.title}</span>}
                     </NavLink>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
@@ -99,7 +109,7 @@ export function AppSidebar() {
 
         {mode === "developer" && (
           <SidebarGroup>
-            <SidebarGroupLabel className="text-[10px] font-medium uppercase tracking-widest text-muted-foreground px-3">
+            <SidebarGroupLabel className="text-[10px] font-medium uppercase tracking-[0.15em] text-muted-foreground px-3">
               Developer
             </SidebarGroupLabel>
             <SidebarGroupContent>
@@ -109,11 +119,11 @@ export function AppSidebar() {
                     <SidebarMenuButton asChild>
                       <NavLink
                         to={item.url}
-                        className="text-sidebar-foreground hover:bg-[hsl(0_0%_100%/0.06)] hover:text-foreground rounded-lg transition-all"
-                        activeClassName="bg-primary/10 text-primary"
+                        className="text-sidebar-foreground hover:bg-[hsl(0_0%_100%/0.04)] hover:text-foreground rounded-xl transition-all duration-200"
+                        activeClassName="bg-primary/8 text-primary"
                       >
                         <item.icon className="mr-2 h-4 w-4" />
-                        {!collapsed && <span className="text-sm">{item.title}</span>}
+                        {!collapsed && <span className="text-sm tracking-wide">{item.title}</span>}
                       </NavLink>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
@@ -126,23 +136,31 @@ export function AppSidebar() {
 
       <SidebarFooter className="p-4">
         {!collapsed && (
-          <div className="space-y-2">
+          <div className="space-y-3">
             <button
               onClick={() => navigate("/mode-select")}
-              className="flex items-center gap-2 text-[10px] text-muted-foreground hover:text-foreground transition-colors w-full"
+              className="flex items-center gap-2 text-[10px] text-muted-foreground hover:text-foreground transition-colors w-full tracking-wide"
             >
               <Settings className="h-3 w-3" />
               <span>Switch Mode</span>
             </button>
             <div className="flex items-center gap-2 text-[10px] text-muted-foreground">
-              <div className="h-2 w-2 rounded-full bg-success animate-pulse-glow" />
+              <motion.div
+                className="h-2 w-2 rounded-full bg-success"
+                animate={{ opacity: [1, 0.4, 1] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              />
               <span>System Healthy</span>
             </div>
           </div>
         )}
         {collapsed && (
           <div className="flex justify-center">
-            <div className="h-2 w-2 rounded-full bg-success animate-pulse-glow" />
+            <motion.div
+              className="h-2 w-2 rounded-full bg-success"
+              animate={{ opacity: [1, 0.4, 1] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            />
           </div>
         )}
       </SidebarFooter>
