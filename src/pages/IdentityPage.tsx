@@ -56,7 +56,7 @@ const IdentityPage = () => {
 
   if (identity && flow !== "complete") {
     return (
-      <PageTransition>
+      <PageTransition variant="scale">
         <div className="space-y-8">
           <SectionHeader title="Post-Quantum Identity" description="Dilithium3 keypair with biometric protection via OS keychain" />
           <div className="flex flex-wrap gap-2">
