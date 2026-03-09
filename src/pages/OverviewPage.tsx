@@ -62,7 +62,7 @@ const OverviewPage = () => {
           />
           <MetricCard
             label="Node ID"
-            value={mockIdentity.nodeId.slice(0, 8)}
+            value={identity ? identity.nodeId.slice(0, 8) : "—"}
             icon={<Radio className="h-4 w-4" />}
             accent="primary"
             subtitle="Post-quantum identity"
