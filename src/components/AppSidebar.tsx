@@ -7,6 +7,7 @@ import {
   HardDrive,
   Wrench,
   Settings,
+  Github,
 } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useApp } from "@/contexts/AppContext";
