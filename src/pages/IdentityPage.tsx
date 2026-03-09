@@ -206,7 +206,7 @@ const IdentityPage = () => {
               ))}
             </div>
 
-            <div className="bg-card rounded-lg border border-destructive/20 p-4 flex items-start gap-3">
+            <div className="glass rounded-xl border-destructive/20 p-4 flex items-start gap-3">
               <AlertTriangle className="h-4 w-4 text-destructive mt-0.5 shrink-0" />
               <div className="text-xs text-muted-foreground space-y-1">
                 <p className="font-bold text-destructive">This phrase is shown once and never stored.</p>
