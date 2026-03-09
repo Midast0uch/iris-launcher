@@ -43,8 +43,8 @@ const OverviewPage = () => {
             label="Mode"
             value={mockLauncherStatus.mode.toUpperCase()}
             icon={<Shield className="h-4 w-4" />}
-            accent={mockLauncherStatus.mode === "developer" ? "accent" : "primary"}
-            subtitle="Active project mode"
+            accent={mode === "developer" ? "accent" : "primary"}
+            subtitle={`${mode === "developer" ? "Developer" : "Personal"} mode`}
           />
           <MetricCard
             label="Uptime"
