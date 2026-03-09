@@ -41,7 +41,7 @@ const OverviewPage = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <MetricCard
             label="Mode"
-            value={mockLauncherStatus.mode.toUpperCase()}
+            value={(mode || "personal").toUpperCase()}
             icon={<Shield className="h-4 w-4" />}
             accent={mode === "developer" ? "accent" : "primary"}
             subtitle={`${mode === "developer" ? "Developer" : "Personal"} mode`}
