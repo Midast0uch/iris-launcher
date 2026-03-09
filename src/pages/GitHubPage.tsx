@@ -2,10 +2,12 @@ import { useState } from "react";
 import { useApp } from "@/contexts/AppContext";
 import { Github, Link, Unlink, GitBranch, Lock, Globe, CheckCircle, ArrowRight, ExternalLink, RefreshCw, KeyRound, Copy, Trash2, Plus, ShieldCheck } from "lucide-react";
 import { SectionHeader, StatusBadge, DataRow } from "@/components/dashboard/DashboardPrimitives";
+import { LiquidIcon } from "@/components/dashboard/LiquidIcon";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { PageTransition } from "@/components/dashboard/PageTransition";
 import { AgentOrb } from "@/components/dashboard/AgentOrb";
+import { motion } from "framer-motion";
 
 interface GitHubConnection {
   username: string;
@@ -54,7 +56,6 @@ const GitHubPage = () => {
   const [selectedRepo, setSelectedRepo] = useState<string | null>(null);
   const [tokenInput, setTokenInput] = useState("");
 
-  // SSH key state
   const [sshKeys, setSSHKeys] = useState<SSHKey[]>([]);
   const [sshStep, setSSHStep] = useState<SSHStep>("list");
   const [newKeyName, setNewKeyName] = useState("");
@@ -68,9 +69,7 @@ const GitHubPage = () => {
     setTimeout(() => setStep("select-repo"), 2000);
   };
 
-  const handleSelectRepo = (repoName: string) => {
-    setSelectedRepo(repoName);
-  };
+  const handleSelectRepo = (repoName: string) => setSelectedRepo(repoName);
 
   const handleConnect = () => {
     if (!selectedRepo) return;
@@ -113,9 +112,7 @@ const GitHubPage = () => {
     }, 1800);
   };
 
-  const handleDeleteKey = (id: string) => {
-    setSSHKeys((prev) => prev.filter((k) => k.id !== id));
-  };
+  const handleDeleteKey = (id: string) => setSSHKeys((prev) => prev.filter((k) => k.id !== id));
 
   const handleCopyKey = (text: string, id: string) => {
     navigator.clipboard.writeText(text);
@@ -137,12 +134,7 @@ const GitHubPage = () => {
           description="Link a repository to enable Git source control and diff review"
           action={
             connection ? (
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={handleDisconnect}
-                className="font-mono text-xs border-destructive/30 text-destructive hover:bg-destructive/10"
-              >
+              <Button variant="outline" size="sm" onClick={handleDisconnect} className="font-mono text-xs border-destructive/30 text-destructive hover:bg-destructive/10">
                 <Unlink className="h-3.5 w-3.5 mr-1.5" />
                 Disconnect
               </Button>
@@ -151,45 +143,42 @@ const GitHubPage = () => {
         />
 
         <div className="flex flex-wrap gap-2">
-          <StatusBadge
-            status={connection ? "online" : "offline"}
-            label={connection ? "GITHUB CONNECTED" : "NOT CONNECTED"}
-          />
+          <StatusBadge status={connection ? "online" : "offline"} label={connection ? "GITHUB CONNECTED" : "NOT CONNECTED"} />
           {connection && (
             <>
               <StatusBadge status="online" label={`REPO: ${connection.repo.toUpperCase()}`} />
-              <StatusBadge
-                status={connection.visibility === "private" ? "dormant" : "warning"}
-                label={connection.visibility.toUpperCase()}
-              />
-              {sshKeys.length > 0 && (
-                <StatusBadge status="online" label={`${sshKeys.length} SSH KEY${sshKeys.length > 1 ? "S" : ""}`} />
-              )}
+              <StatusBadge status={connection.visibility === "private" ? "dormant" : "warning"} label={connection.visibility.toUpperCase()} />
+              {sshKeys.length > 0 && <StatusBadge status="online" label={`${sshKeys.length} SSH KEY${sshKeys.length > 1 ? "S" : ""}`} />}
             </>
           )}
         </div>
 
-        {/* Idle — prompt to connect */}
+        {/* Idle */}
         {step === "idle" && (
-          <div className="animate-enter space-y-6 max-w-lg mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            className="space-y-6 max-w-lg mx-auto"
+          >
             <div className="flex flex-col items-center justify-center py-8">
-              <div className="h-20 w-20 rounded-2xl bg-foreground/5 border border-[hsl(0_0%_100%/0.08)] flex items-center justify-center mb-6">
-                <Github className="h-10 w-10 text-foreground" />
-              </div>
-              <h2 className="text-lg font-bold text-foreground mb-2">Connect to GitHub</h2>
-              <p className="text-sm text-muted-foreground text-center max-w-sm mb-8">
+              <LiquidIcon color="neutral" size="xl" bounce className="mb-6">
+                <Github className="h-10 w-10" />
+              </LiquidIcon>
+              <h2 className="text-lg font-semibold text-foreground mb-2">Connect to GitHub</h2>
+              <p className="text-sm text-muted-foreground text-center max-w-sm mb-8 tracking-wide">
                 Link a GitHub repository to enable source tracking, commit history, and agent diff reviews.
               </p>
             </div>
 
-            <div className="glass rounded-xl p-5 space-y-4">
-              <h3 className="text-sm font-bold text-foreground flex items-center gap-2">
-                <Lock className="h-4 w-4 text-primary" />
+            <div className="glass-card rounded-2xl p-6 space-y-4">
+              <h3 className="text-sm font-semibold text-foreground flex items-center gap-3">
+                <LiquidIcon color="primary" size="sm"><Lock className="h-4 w-4" /></LiquidIcon>
                 Personal Access Token
               </h3>
-              <p className="text-xs text-muted-foreground">
-                Generate a <span className="font-mono text-foreground">fine-grained</span> personal access token from{" "}
-                <span className="font-mono text-primary">GitHub → Settings → Developer Settings → Tokens</span> with <span className="font-mono text-foreground">repo</span> scope.
+              <p className="text-xs text-muted-foreground tracking-wide">
+                Generate a <span className="font-mono text-foreground">fine-grained</span> token from{" "}
+                <span className="font-mono text-primary">GitHub → Settings → Tokens</span> with <span className="font-mono text-foreground">repo</span> scope.
               </p>
               <Input
                 type="password"
@@ -198,16 +187,12 @@ const GitHubPage = () => {
                 placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"
                 className="font-mono glass-subtle border-0 text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-primary"
               />
-              <Button
-                className="w-full font-mono bg-primary text-primary-foreground hover:bg-primary/90"
-                disabled={!tokenInput.trim()}
-                onClick={handleAuth}
-              >
+              <Button className="w-full font-mono bg-primary text-primary-foreground hover:bg-primary/90" disabled={!tokenInput.trim()} onClick={handleAuth}>
                 <Link className="h-4 w-4 mr-2" />
                 Authenticate
               </Button>
             </div>
-          </div>
+          </motion.div>
         )}
 
         {/* Authenticating */}
@@ -215,19 +200,21 @@ const GitHubPage = () => {
           <div className="flex flex-col items-center justify-center py-16 animate-enter space-y-8">
             <AgentOrb active size="lg" />
             <div className="text-center space-y-2">
-              <h2 className="text-lg font-bold text-foreground">Authenticating</h2>
+              <h2 className="text-lg font-semibold text-foreground">Authenticating</h2>
               <p className="text-sm text-muted-foreground font-mono">Verifying token with GitHub API...</p>
             </div>
             <div className="space-y-3 w-full max-w-xs">
               {["Validating token", "Fetching repositories", "Checking permissions"].map((label, i) => (
-                <div
+                <motion.div
                   key={label}
-                  className="flex items-center gap-3 text-xs font-mono animate-fade-in"
-                  style={{ animationDelay: `${i * 600}ms`, animationFillMode: "backwards" }}
+                  initial={{ opacity: 0, x: -8 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.5, type: "spring" as const, stiffness: 300, damping: 25 }}
+                  className="flex items-center gap-3 text-xs font-mono"
                 >
                   <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse-glow" />
                   <span className="text-primary">{label}</span>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
@@ -235,72 +222,71 @@ const GitHubPage = () => {
 
         {/* Select repo */}
         {step === "select-repo" && (
-          <div className="animate-enter space-y-6 max-w-lg mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            className="space-y-6 max-w-lg mx-auto"
+          >
             <div className="text-center space-y-2">
               <div className="flex justify-center mb-4">
-                <div className="h-12 w-12 rounded-xl bg-success/15 border border-success/30 flex items-center justify-center">
-                  <CheckCircle className="h-6 w-6 text-success" />
-                </div>
+                <LiquidIcon color="success" size="lg" bounce>
+                  <CheckCircle className="h-6 w-6" />
+                </LiquidIcon>
               </div>
-              <h2 className="text-lg font-bold text-foreground">Authenticated as @iris-user</h2>
-              <p className="text-sm text-muted-foreground">Select a repository to link with IRIS.</p>
+              <h2 className="text-lg font-semibold text-foreground">Authenticated as @iris-user</h2>
+              <p className="text-sm text-muted-foreground tracking-wide">Select a repository to link with IRIS.</p>
             </div>
 
-            <div className="glass rounded-xl divide-y divide-[hsl(0_0%_100%/0.05)] overflow-hidden">
-              {mockRepos.map((repo) => (
-                <button
+            <div className="glass-card rounded-2xl divide-y divide-[hsl(0_0%_100%/0.04)] overflow-hidden">
+              {mockRepos.map((repo, i) => (
+                <motion.button
                   key={repo.name}
+                  initial={{ opacity: 0, x: -8 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.06, type: "spring" as const, stiffness: 300, damping: 25 }}
                   onClick={() => handleSelectRepo(repo.name)}
                   className={`w-full flex items-center justify-between p-4 text-left transition-colors hover:bg-[hsl(0_0%_100%/0.03)] ${
                     selectedRepo === repo.name ? "bg-primary/5" : ""
                   }`}
                 >
                   <div className="flex items-center gap-3">
-                    <div className={`h-8 w-8 rounded-lg flex items-center justify-center ${
-                      selectedRepo === repo.name
-                        ? "bg-primary/15 border border-primary/30 text-primary"
-                        : "glass-subtle text-muted-foreground"
+                    <div className={`h-8 w-8 rounded-xl flex items-center justify-center ${
+                      selectedRepo === repo.name ? "liquid-icon liquid-icon-primary" : "glass-subtle"
                     }`}>
-                      <Github className="h-4 w-4" />
+                      <Github className={`h-4 w-4 ${selectedRepo === repo.name ? "text-primary" : "text-muted-foreground"}`} />
                     </div>
                     <div>
                       <div className="flex items-center gap-2">
                         <p className="text-sm font-mono font-medium text-foreground">{repo.name}</p>
-                        {repo.visibility === "private" ? (
-                          <Lock className="h-3 w-3 text-muted-foreground" />
-                        ) : (
-                          <Globe className="h-3 w-3 text-muted-foreground" />
-                        )}
+                        {repo.visibility === "private" ? <Lock className="h-3 w-3 text-muted-foreground" /> : <Globe className="h-3 w-3 text-muted-foreground" />}
                       </div>
-                      <p className="text-[10px] font-mono text-muted-foreground">
-                        {repo.defaultBranch} · updated {repo.updatedAt}
-                      </p>
+                      <p className="text-[10px] font-mono text-muted-foreground">{repo.defaultBranch} · updated {repo.updatedAt}</p>
                     </div>
                   </div>
-                  {selectedRepo === repo.name && (
-                    <CheckCircle className="h-4 w-4 text-primary" />
-                  )}
-                </button>
+                  {selectedRepo === repo.name && <CheckCircle className="h-4 w-4 text-primary" />}
+                </motion.button>
               ))}
             </div>
 
-            <Button
-              className="w-full font-mono bg-primary text-primary-foreground hover:bg-primary/90"
-              disabled={!selectedRepo}
-              onClick={handleConnect}
-            >
+            <Button className="w-full font-mono bg-primary text-primary-foreground hover:bg-primary/90" disabled={!selectedRepo} onClick={handleConnect}>
               Connect Repository
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
-          </div>
+          </motion.div>
         )}
 
-        {/* Connected — show details + SSH */}
+        {/* Connected */}
         {step === "connected" && connection && (
-          <div className="animate-enter space-y-6">
-            <div className="glass rounded-xl p-5">
-              <h3 className="text-sm font-bold text-foreground mb-4 flex items-center gap-2">
-                <Github className="h-4 w-4 text-foreground" />
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            className="space-y-6"
+          >
+            <div className="glass-card rounded-2xl p-6">
+              <h3 className="text-sm font-semibold text-foreground mb-5 flex items-center gap-3">
+                <LiquidIcon color="neutral" size="sm"><Github className="h-4 w-4" /></LiquidIcon>
                 Repository Details
               </h3>
               <div className="space-y-0">
@@ -312,9 +298,9 @@ const GitHubPage = () => {
               </div>
             </div>
 
-            <div className="glass rounded-xl p-5">
-              <h3 className="text-sm font-bold text-foreground mb-4 flex items-center gap-2">
-                <GitBranch className="h-4 w-4 text-primary" />
+            <div className="glass-card rounded-2xl p-6">
+              <h3 className="text-sm font-semibold text-foreground mb-5 flex items-center gap-3">
+                <LiquidIcon color="primary" size="sm"><GitBranch className="h-4 w-4" /></LiquidIcon>
                 What's Enabled
               </h3>
               <div className="space-y-3">
@@ -323,37 +309,37 @@ const GitHubPage = () => {
                   { label: "Diff Review", desc: "Review and approve/reject agent-proposed code changes before commit" },
                   { label: "Auto-commit", desc: "Agent writes are automatically committed with descriptive messages" },
                   { label: "Rollback", desc: "Revert to any previous verified-good commit instantly" },
-                ].map((feature) => (
-                  <div key={feature.label} className="flex items-start gap-3">
+                ].map((feature, i) => (
+                  <motion.div
+                    key={feature.label}
+                    initial={{ opacity: 0, x: -8 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.1 + i * 0.06, type: "spring" as const, stiffness: 300, damping: 25 }}
+                    className="flex items-start gap-3"
+                  >
                     <CheckCircle className="h-4 w-4 text-success mt-0.5 shrink-0" />
                     <div>
                       <p className="text-sm font-mono text-foreground">{feature.label}</p>
-                      <p className="text-[10px] text-muted-foreground">{feature.desc}</p>
+                      <p className="text-[10px] text-muted-foreground tracking-wide">{feature.desc}</p>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </div>
 
             {/* SSH Key Management */}
-            <div className="glass rounded-xl p-5">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-sm font-bold text-foreground flex items-center gap-2">
-                  <KeyRound className="h-4 w-4 text-accent" />
+            <div className="glass-card rounded-2xl p-6">
+              <div className="flex items-center justify-between mb-5">
+                <h3 className="text-sm font-semibold text-foreground flex items-center gap-3">
+                  <LiquidIcon color="accent" size="sm"><KeyRound className="h-4 w-4" /></LiquidIcon>
                   SSH Keys
                 </h3>
                 {sshStep === "list" && (
                   <Button
                     variant="outline"
                     size="sm"
-                    onClick={() => setSSHStep("display")}
+                    onClick={() => { setSSHStep("display"); setGeneratedPubKey(""); }}
                     className="h-7 text-xs font-mono border-accent/30 text-accent hover:bg-accent/10"
-                    // Only show generate form
-                    onClickCapture={(e) => {
-                      e.stopPropagation();
-                      setSSHStep("display");
-                      setGeneratedPubKey("");
-                    }}
                   >
                     <Plus className="h-3 w-3 mr-1" />
                     Generate Key
@@ -361,117 +347,95 @@ const GitHubPage = () => {
                 )}
               </div>
 
-              {/* Key list */}
               {sshStep === "list" && (
                 <>
                   {sshKeys.length === 0 ? (
                     <div className="text-center py-8">
-                      <KeyRound className="h-8 w-8 text-muted-foreground mx-auto mb-3 opacity-40" />
+                      <LiquidIcon color="neutral" size="lg" bounce={false} className="mx-auto mb-3 opacity-40">
+                        <KeyRound className="h-6 w-6" />
+                      </LiquidIcon>
                       <p className="text-sm text-muted-foreground">No SSH keys configured</p>
-                      <p className="text-[10px] text-muted-foreground mt-1">Generate a key for secure Git operations over SSH</p>
+                      <p className="text-[10px] text-muted-foreground mt-1 tracking-wide">Generate a key for secure Git operations over SSH</p>
                     </div>
                   ) : (
                     <div className="space-y-2">
                       {sshKeys.map((key) => (
-                        <div key={key.id} className="glass-subtle rounded-lg p-3 flex items-center justify-between group">
+                        <motion.div
+                          key={key.id}
+                          initial={{ opacity: 0, scale: 0.96 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ type: "spring" as const, stiffness: 300, damping: 25 }}
+                          className="glass-subtle rounded-xl p-3 flex items-center justify-between group"
+                        >
                           <div className="flex items-center gap-3">
-                            <div className="h-8 w-8 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center">
-                              <KeyRound className="h-4 w-4 text-accent" />
-                            </div>
+                            <LiquidIcon color="accent" size="sm" bounce={false}>
+                              <KeyRound className="h-4 w-4" />
+                            </LiquidIcon>
                             <div>
                               <div className="flex items-center gap-2">
                                 <p className="text-sm font-mono font-medium text-foreground">{key.name}</p>
-                                <span className="text-[9px] font-mono px-1.5 py-0.5 rounded-md glass-subtle text-muted-foreground">
-                                  {key.type.toUpperCase()}
-                                </span>
+                                <span className="text-[9px] font-mono px-1.5 py-0.5 rounded-md glass-subtle text-muted-foreground">{key.type.toUpperCase()}</span>
                               </div>
                               <p className="text-[10px] font-mono text-muted-foreground">{key.fingerprint}</p>
                             </div>
                           </div>
                           <div className="flex items-center gap-1">
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              className="h-7 w-7 p-0 text-muted-foreground hover:text-foreground opacity-0 group-hover:opacity-100 transition-opacity"
-                              onClick={() => handleCopyKey(key.fingerprint, key.id)}
-                            >
+                            <Button variant="ghost" size="sm" className="h-7 w-7 p-0 text-muted-foreground hover:text-foreground opacity-0 group-hover:opacity-100 transition-opacity" onClick={() => handleCopyKey(key.fingerprint, key.id)}>
                               {copiedKey === key.id ? <CheckCircle className="h-3.5 w-3.5 text-success" /> : <Copy className="h-3.5 w-3.5" />}
                             </Button>
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              className="h-7 w-7 p-0 text-muted-foreground hover:text-destructive opacity-0 group-hover:opacity-100 transition-opacity"
-                              onClick={() => handleDeleteKey(key.id)}
-                            >
+                            <Button variant="ghost" size="sm" className="h-7 w-7 p-0 text-muted-foreground hover:text-destructive opacity-0 group-hover:opacity-100 transition-opacity" onClick={() => handleDeleteKey(key.id)}>
                               <Trash2 className="h-3.5 w-3.5" />
                             </Button>
                           </div>
-                        </div>
+                        </motion.div>
                       ))}
                     </div>
                   )}
                 </>
               )}
 
-              {/* Generating animation */}
               {sshStep === "generating" && (
-                <div className="flex flex-col items-center justify-center py-8 animate-enter space-y-6">
+                <div className="flex flex-col items-center justify-center py-8 space-y-6">
                   <AgentOrb active size="md" />
                   <div className="text-center space-y-1">
-                    <p className="text-sm font-medium text-foreground">Generating {newKeyType.toUpperCase()} keypair</p>
-                    <p className="text-[10px] font-mono text-muted-foreground">Creating secure key for {newKeyName}...</p>
+                    <p className="text-sm font-semibold text-foreground">Generating {newKeyType.toUpperCase()} Key</p>
+                    <p className="text-[10px] font-mono text-muted-foreground">Collecting entropy and deriving key pair...</p>
                   </div>
                 </div>
               )}
 
-              {/* Display generated key / generate form */}
               {sshStep === "display" && !generatedPubKey && (
-                <div className="space-y-4 animate-fade-in">
-                  <div className="space-y-3">
-                    <div>
-                      <label className="text-xs text-muted-foreground mb-1.5 block">Key Name</label>
-                      <Input
-                        value={newKeyName}
-                        onChange={(e) => setNewKeyName(e.target.value)}
-                        placeholder="e.g., iris-deploy, macbook-pro"
-                        className="font-mono glass-subtle border-0 text-foreground placeholder:text-muted-foreground focus:border-accent focus:ring-accent"
-                      />
-                    </div>
-                    <div>
-                      <label className="text-xs text-muted-foreground mb-1.5 block">Key Type</label>
-                      <div className="flex gap-2">
-                        {(["ed25519", "rsa"] as const).map((type) => (
-                          <button
-                            key={type}
-                            onClick={() => setNewKeyType(type)}
-                            className={`flex-1 py-2.5 px-3 rounded-lg text-xs font-mono text-center transition-all ${
-                              newKeyType === type
-                                ? "bg-accent/15 border border-accent/30 text-accent"
-                                : "glass-subtle text-muted-foreground hover:text-foreground"
-                            }`}
-                          >
-                            <span className="font-medium">{type.toUpperCase()}</span>
-                            <span className="block text-[9px] mt-0.5 opacity-70">
-                              {type === "ed25519" ? "Recommended · Fast" : "Legacy · Compatible"}
-                            </span>
-                          </button>
-                        ))}
-                      </div>
+                <div className="space-y-4">
+                  <div>
+                    <label className="text-xs text-muted-foreground mb-1.5 block tracking-wide">Key Name</label>
+                    <Input
+                      value={newKeyName}
+                      onChange={(e) => setNewKeyName(e.target.value)}
+                      placeholder="e.g. iris-laptop"
+                      className="font-mono glass-subtle border-0 text-foreground placeholder:text-muted-foreground"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-xs text-muted-foreground mb-2 block tracking-wide">Key Type</label>
+                    <div className="flex gap-2">
+                      {(["ed25519", "rsa"] as const).map((type) => (
+                        <motion.button
+                          key={type}
+                          onClick={() => setNewKeyType(type)}
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                          className={`flex-1 py-2.5 rounded-xl text-xs font-mono transition-all ${
+                            newKeyType === type ? "liquid-icon liquid-icon-accent text-accent" : "glass-subtle text-muted-foreground hover:text-foreground"
+                          }`}
+                        >
+                          {type.toUpperCase()}
+                        </motion.button>
+                      ))}
                     </div>
                   </div>
-                  <div className="flex gap-2">
-                    <Button
-                      variant="outline"
-                      className="flex-1 font-mono text-xs text-muted-foreground hover:text-foreground"
-                      onClick={handleDoneWithKey}
-                    >
-                      Cancel
-                    </Button>
-                    <Button
-                      className="flex-1 font-mono text-xs bg-accent text-accent-foreground hover:bg-accent/90"
-                      disabled={!newKeyName.trim()}
-                      onClick={handleGenerateKey}
-                    >
+                  <div className="flex gap-2 pt-2">
+                    <Button variant="outline" className="flex-1 font-mono text-xs" onClick={handleDoneWithKey}>Cancel</Button>
+                    <Button className="flex-1 font-mono text-xs bg-accent text-accent-foreground hover:bg-accent/90" onClick={handleGenerateKey} disabled={!newKeyName.trim()}>
                       <ShieldCheck className="h-3.5 w-3.5 mr-1.5" />
                       Generate
                     </Button>
@@ -479,68 +443,51 @@ const GitHubPage = () => {
                 </div>
               )}
 
-              {/* Show generated public key */}
               {sshStep === "display" && generatedPubKey && (
-                <div className="space-y-4 animate-enter">
-                  <div className="flex items-center gap-2 mb-2">
-                    <CheckCircle className="h-4 w-4 text-success" />
-                    <p className="text-sm font-medium text-foreground">Key Generated — <span className="text-accent font-mono">{newKeyName}</span></p>
+                <motion.div
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ type: "spring" as const, stiffness: 300, damping: 25 }}
+                  className="space-y-4"
+                >
+                  <div className="flex items-center gap-3">
+                    <LiquidIcon color="success" size="sm" bounce>
+                      <CheckCircle className="h-4 w-4" />
+                    </LiquidIcon>
+                    <p className="text-sm font-semibold text-foreground">Key Generated Successfully</p>
                   </div>
                   <div>
                     <div className="flex items-center justify-between mb-1.5">
-                      <label className="text-xs text-muted-foreground">Public Key</label>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        className="h-6 text-[10px] font-mono text-muted-foreground hover:text-foreground"
-                        onClick={() => handleCopyKey(generatedPubKey, "pubkey")}
-                      >
-                        {copiedKey === "pubkey" ? (
-                          <><CheckCircle className="h-3 w-3 mr-1 text-success" /> Copied</>
-                        ) : (
-                          <><Copy className="h-3 w-3 mr-1" /> Copy</>
-                        )}
+                      <label className="text-xs text-muted-foreground tracking-wide">Public Key</label>
+                      <Button variant="ghost" size="sm" className="h-6 text-[10px] font-mono text-muted-foreground hover:text-foreground" onClick={() => handleCopyKey(generatedPubKey, "new")}>
+                        {copiedKey === "new" ? <><CheckCircle className="h-3 w-3 mr-1 text-success" />Copied</> : <><Copy className="h-3 w-3 mr-1" />Copy</>}
                       </Button>
                     </div>
-                    <div className="glass-subtle rounded-lg p-3 font-mono text-[11px] text-primary break-all leading-relaxed select-all">
-                      {generatedPubKey}
-                    </div>
+                    <div className="glass-subtle rounded-xl p-3 font-mono text-[10px] text-primary break-all leading-relaxed">{generatedPubKey}</div>
                   </div>
-                  <div className="glass-subtle rounded-lg p-3 flex items-start gap-2">
-                    <ShieldCheck className="h-4 w-4 text-warning mt-0.5 shrink-0" />
-                    <p className="text-[10px] text-muted-foreground">
-                      Add this public key to <span className="font-mono text-primary">GitHub → Settings → SSH and GPG Keys → New SSH Key</span>. The private key is stored securely in your OS keychain.
-                    </p>
-                  </div>
-                  <Button
-                    className="w-full font-mono text-xs bg-accent text-accent-foreground hover:bg-accent/90"
-                    onClick={handleDoneWithKey}
-                  >
-                    Done
-                    <ArrowRight className="ml-2 h-3.5 w-3.5" />
-                  </Button>
-                </div>
+                  <p className="text-[10px] text-muted-foreground tracking-wide">Add this public key to your GitHub account under <span className="font-mono text-foreground">Settings → SSH Keys</span>.</p>
+                  <Button className="w-full font-mono text-xs" onClick={handleDoneWithKey}>Done</Button>
+                </motion.div>
               )}
             </div>
 
-            <div className="flex gap-3">
-              <Button
-                variant="outline"
-                className="flex-1 font-mono text-xs border-[hsl(0_0%_100%/0.08)] text-muted-foreground hover:text-foreground hover:bg-[hsl(0_0%_100%/0.04)]"
-                onClick={() => window.open(`https://github.com/${connection.username}/${connection.repo}`, "_blank")}
-              >
-                <ExternalLink className="h-3.5 w-3.5 mr-1.5" />
-                Open on GitHub
-              </Button>
-              <Button
-                variant="outline"
-                className="flex-1 font-mono text-xs border-[hsl(0_0%_100%/0.08)] text-muted-foreground hover:text-foreground hover:bg-[hsl(0_0%_100%/0.04)]"
-              >
-                <RefreshCw className="h-3.5 w-3.5 mr-1.5" />
-                Sync Now
-              </Button>
+            <div className="glass-card rounded-2xl p-6">
+              <div className="flex items-start gap-3">
+                <LiquidIcon color="warning" size="sm" bounce={false}>
+                  <ExternalLink className="h-4 w-4" />
+                </LiquidIcon>
+                <div className="text-xs text-muted-foreground space-y-1">
+                  <p className="font-semibold text-foreground text-sm">Quick Links</p>
+                  <p>Manage your GitHub settings, SSH keys, and access tokens directly on GitHub.</p>
+                  <div className="flex gap-3 mt-2">
+                    <a href="#" className="text-primary hover:underline font-mono">Repository Settings</a>
+                    <a href="#" className="text-primary hover:underline font-mono">Deploy Keys</a>
+                    <a href="#" className="text-primary hover:underline font-mono">Webhooks</a>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
+          </motion.div>
         )}
       </div>
     </PageTransition>
