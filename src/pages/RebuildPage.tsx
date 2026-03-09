@@ -68,8 +68,8 @@ const RebuildPage = () => {
             { step: 4, name: "Replace executable", desc: "Atomic swap of new binary into position", status: "ready" },
             { step: 5, name: "Update last_good_commit", desc: "Record verified commit hash in settings", status: "ready" },
           ].map((step) => (
-            <div key={step.step} className="flex items-center gap-4 py-3 px-4 bg-background rounded border border-border">
-              <div className="h-8 w-8 rounded-full bg-secondary border border-border flex items-center justify-center">
+            <div key={step.step} className="flex items-center gap-4 py-3 px-4 glass-subtle rounded-xl">
+              <div className="h-8 w-8 rounded-full glass flex items-center justify-center">
                 <span className="text-xs font-mono text-muted-foreground">{step.step}</span>
               </div>
               <div className="flex-1">
