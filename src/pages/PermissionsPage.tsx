@@ -72,7 +72,7 @@ const PermissionsPage = () => {
           </div>
         </div>
       </div>
-    </div>
+    </div></PageTransition>
   );
 };
 

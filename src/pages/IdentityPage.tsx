@@ -113,7 +113,7 @@ const IdentityPage = () => {
           </div>
         )}
       </div>
-    </div>
+    </div></PageTransition>
   );
 };
 

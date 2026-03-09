@@ -101,7 +101,7 @@ const ProjectsPage = () => {
           </div>
         </div>
       </div>
-    </div>
+    </div></PageTransition>
   );
 };
 

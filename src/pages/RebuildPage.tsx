@@ -94,7 +94,7 @@ const RebuildPage = () => {
           </div>
         </div>
       </div>
-    </div>
+    </div></PageTransition>
   );
 };
 

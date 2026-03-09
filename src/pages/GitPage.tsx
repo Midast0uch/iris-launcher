@@ -77,7 +77,7 @@ const GitPage = () => {
           ))}
         </div>
       </div>
-    </div>
+    </div></PageTransition>
   );
 };
 
