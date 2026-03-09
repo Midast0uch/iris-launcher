@@ -2,6 +2,7 @@ import { FolderGit2, GitCommit, RotateCcw, AlertTriangle } from "lucide-react";
 import { SectionHeader, DataRow, StatusBadge, MetricCard } from "@/components/dashboard/DashboardPrimitives";
 import { mockGitStatus } from "@/lib/mock-data";
 import { Button } from "@/components/ui/button";
+import { PageTransition } from "@/components/dashboard/PageTransition";
 
 const GitPage = () => {
   return (
