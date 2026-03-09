@@ -119,8 +119,8 @@ export function AppSidebar() {
                     <SidebarMenuButton asChild>
                       <NavLink
                         to={item.url}
-                        className="text-sidebar-foreground hover:bg-[hsl(0_0%_100%/0.04)] hover:text-foreground rounded-xl transition-all duration-200"
-                        activeClassName="bg-primary/8 text-primary"
+                        className="text-sidebar-foreground hover:bg-sidebar-accent hover:text-foreground rounded-xl transition-all duration-200"
+                        activeClassName="bg-sidebar-accent text-foreground font-medium"
                       >
                         <item.icon className="mr-2 h-4 w-4" />
                         {!collapsed && <span className="text-sm tracking-wide">{item.title}</span>}
