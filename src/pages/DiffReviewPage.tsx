@@ -2,6 +2,7 @@ import { Activity, Check, X, FileCode } from "lucide-react";
 import { SectionHeader, StatusBadge } from "@/components/dashboard/DashboardPrimitives";
 import { mockPendingWrites } from "@/lib/mock-data";
 import { Button } from "@/components/ui/button";
+import { PageTransition } from "@/components/dashboard/PageTransition";
 
 const DiffReviewPage = () => {
   return (
