@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useApp } from "@/contexts/AppContext";
 import { Github, Link, Unlink, GitBranch, Lock, Globe, CheckCircle, ArrowRight, ExternalLink, RefreshCw, KeyRound, Copy, Trash2, Plus, ShieldCheck } from "lucide-react";
 import { SectionHeader, StatusBadge, DataRow } from "@/components/dashboard/DashboardPrimitives";
 import { Button } from "@/components/ui/button";
@@ -47,6 +48,7 @@ function generateMockPublicKey(type: "ed25519" | "rsa") {
 }
 
 const GitHubPage = () => {
+  const { setGitHubConnected } = useApp();
   const [step, setStep] = useState<ConnectStep>("idle");
   const [connection, setConnection] = useState<GitHubConnection | null>(null);
   const [selectedRepo, setSelectedRepo] = useState<string | null>(null);
@@ -82,6 +84,7 @@ const GitHubPage = () => {
       avatarUrl: "",
     });
     setStep("connected");
+    setGitHubConnected(true);
   };
 
   const handleDisconnect = () => {
@@ -89,6 +92,7 @@ const GitHubPage = () => {
     setSelectedRepo(null);
     setTokenInput("");
     setStep("idle");
+    setGitHubConnected(false);
   };
 
   const handleGenerateKey = () => {

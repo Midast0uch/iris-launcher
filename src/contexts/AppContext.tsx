@@ -14,6 +14,8 @@ interface AppContextType {
   mode: AppMode;
   setMode: (mode: AppMode) => void;
   clearIdentity: () => void;
+  gitHubConnected: boolean;
+  setGitHubConnected: (connected: boolean) => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -26,6 +28,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   const [mode, setModeState] = useState<AppMode>(() => {
     return (localStorage.getItem("iris-mode") as AppMode) || null;
+  });
+
+  const [gitHubConnected, setGitHubConnectedState] = useState<boolean>(() => {
+    return localStorage.getItem("iris-github-connected") === "true";
   });
 
   const setIdentity = useCallback((id: IdentityData | null) => {
@@ -51,8 +57,17 @@ export function AppProvider({ children }: { children: ReactNode }) {
     localStorage.removeItem("iris-identity");
   }, []);
 
+  const setGitHubConnected = useCallback((connected: boolean) => {
+    setGitHubConnectedState(connected);
+    if (connected) {
+      localStorage.setItem("iris-github-connected", "true");
+    } else {
+      localStorage.removeItem("iris-github-connected");
+    }
+  }, []);
+
   return (
-    <AppContext.Provider value={{ identity, setIdentity, mode, setMode, clearIdentity }}>
+    <AppContext.Provider value={{ identity, setIdentity, mode, setMode, clearIdentity, gitHubConnected, setGitHubConnected }}>
       {children}
     </AppContext.Provider>
   );
