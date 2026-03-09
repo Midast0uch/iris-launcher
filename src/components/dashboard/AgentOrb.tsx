@@ -32,16 +32,16 @@ export function AgentOrb({ active = true, size = "md" }: AgentOrbProps) {
         />
       )}
       <motion.div
-        className={`rounded-full ${active ? "bg-primary" : "bg-muted-foreground/50"}`}
+        className={`rounded-full ${active ? "bg-success" : "bg-muted-foreground/50"}`}
         style={{ width: s.orb, height: s.orb }}
         animate={
           active
             ? {
                 scale: [1, 1.08, 1],
                 boxShadow: [
-                  "0 0 16px hsl(215 100% 60% / 0.2)",
-                  "0 0 28px hsl(215 100% 60% / 0.4)",
-                  "0 0 16px hsl(215 100% 60% / 0.2)",
+                  "0 0 16px hsl(152 60% 48% / 0.2)",
+                  "0 0 28px hsl(152 60% 48% / 0.4)",
+                  "0 0 16px hsl(152 60% 48% / 0.2)",
                 ],
               }
             : undefined
