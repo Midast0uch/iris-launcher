@@ -71,7 +71,7 @@ const OverviewPage = () => {
 
         {/* Two-column details */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="bg-card rounded-lg border border-border p-5">
+          <div className="glass rounded-xl p-5">
             <h3 className="text-sm font-bold text-foreground mb-4 flex items-center gap-2">
               <Cpu className="h-4 w-4 text-primary" />
               System Health
