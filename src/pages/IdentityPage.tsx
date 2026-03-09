@@ -100,7 +100,7 @@ const IdentityPage = () => {
             <MetricCard label="Created" value={new Date(identity.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric" })} icon={<Key className="h-4 w-4" />} accent="success" subtitle={new Date(identity.createdAt).getFullYear().toString()} />
           </div>
 
-          <div className="bg-card rounded-lg border border-border p-5">
+          <div className="glass rounded-xl p-5">
             <h3 className="text-sm font-bold text-foreground mb-4 flex items-center gap-2">
               <Fingerprint className="h-4 w-4 text-primary" />
               Identity Details
