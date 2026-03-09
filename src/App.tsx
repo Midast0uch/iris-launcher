@@ -2,9 +2,10 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
+import { AppProvider, useApp } from "@/contexts/AppContext";
 import OverviewPage from "./pages/OverviewPage";
 import IdentityPage from "./pages/IdentityPage";
 import ProjectsPage from "./pages/ProjectsPage";
@@ -13,6 +14,7 @@ import GitPage from "./pages/GitPage";
 import DiffReviewPage from "./pages/DiffReviewPage";
 import RebuildPage from "./pages/RebuildPage";
 import FirstRunPage from "./pages/FirstRunPage";
+import ModeSelectPage from "./pages/ModeSelectPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -38,36 +40,64 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => (
   </SidebarProvider>
 );
 
+const AppRoutes = () => {
+  const { mode } = useApp();
+
+  // No mode selected yet — redirect to mode select
+  if (!mode) {
+    return (
+      <Routes>
+        <Route path="/mode-select" element={<ModeSelectPage />} />
+        <Route path="/first-run" element={
+          <div className="min-h-screen grid-pattern scanline">
+            <FirstRunPage />
+          </div>
+        } />
+        <Route path="*" element={<Navigate to="/mode-select" replace />} />
+      </Routes>
+    );
+  }
+
+  return (
+    <Routes>
+      <Route path="/first-run" element={
+        <div className="min-h-screen grid-pattern scanline">
+          <FirstRunPage />
+        </div>
+      } />
+      <Route path="/mode-select" element={<ModeSelectPage />} />
+      <Route path="*" element={
+        <DashboardLayout>
+          <Routes>
+            <Route path="/" element={<OverviewPage />} />
+            <Route path="/identity" element={<IdentityPage />} />
+            <Route path="/projects" element={<ProjectsPage />} />
+            <Route path="/permissions" element={<PermissionsPage />} />
+            {mode === "developer" && (
+              <>
+                <Route path="/developer/git" element={<GitPage />} />
+                <Route path="/developer/diff" element={<DiffReviewPage />} />
+                <Route path="/developer/rebuild" element={<RebuildPage />} />
+              </>
+            )}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </DashboardLayout>
+      } />
+    </Routes>
+  );
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
-        <Routes>
-          {/* First-run has no sidebar */}
-          <Route path="/first-run" element={
-            <div className="min-h-screen grid-pattern scanline">
-              <FirstRunPage />
-            </div>
-          } />
-          {/* Dashboard routes */}
-          <Route path="*" element={
-            <DashboardLayout>
-              <Routes>
-                <Route path="/" element={<OverviewPage />} />
-                <Route path="/identity" element={<IdentityPage />} />
-                <Route path="/projects" element={<ProjectsPage />} />
-                <Route path="/permissions" element={<PermissionsPage />} />
-                <Route path="/developer/git" element={<GitPage />} />
-                <Route path="/developer/diff" element={<DiffReviewPage />} />
-                <Route path="/developer/rebuild" element={<RebuildPage />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </DashboardLayout>
-          } />
-        </Routes>
-      </BrowserRouter>
+      <AppProvider>
+        <BrowserRouter>
+          <AppRoutes />
+        </BrowserRouter>
+      </AppProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );

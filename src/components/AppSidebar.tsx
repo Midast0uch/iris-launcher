@@ -5,11 +5,12 @@ import {
   LayoutDashboard,
   Shield,
   HardDrive,
-  Settings,
   Wrench,
+  Settings,
 } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
-import { useLocation } from "react-router-dom";
+import { useApp } from "@/contexts/AppContext";
+import { useNavigate } from "react-router-dom";
 import {
   Sidebar,
   SidebarContent,
@@ -40,7 +41,12 @@ const devItems = [
 export function AppSidebar() {
   const { state } = useSidebar();
   const collapsed = state === "collapsed";
-  const location = useLocation();
+  const { mode, setMode } = useApp();
+  const navigate = useNavigate();
+
+  const handleSwitchMode = () => {
+    navigate("/mode-select");
+  };
 
   return (
     <Sidebar collapsible="icon" className="border-r border-border">
@@ -52,7 +58,9 @@ export function AppSidebar() {
             </div>
             <div>
               <h2 className="text-sm font-bold text-foreground">IRIS Launcher</h2>
-              <p className="text-[10px] font-mono text-muted-foreground">v0.2.1-alpha</p>
+              <p className="text-[10px] font-mono text-muted-foreground">
+                {mode === "developer" ? "Developer Mode" : "Personal Mode"}
+              </p>
             </div>
           </div>
         )}
@@ -91,36 +99,47 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
 
-        <SidebarGroup>
-          <SidebarGroupLabel className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
-            Developer Mode
-          </SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {devItems.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <NavLink
-                      to={item.url}
-                      className="text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
-                      activeClassName="bg-primary/10 text-primary border-l-2 border-primary"
-                    >
-                      <item.icon className="mr-2 h-4 w-4" />
-                      {!collapsed && <span className="text-sm">{item.title}</span>}
-                    </NavLink>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
+        {mode === "developer" && (
+          <SidebarGroup>
+            <SidebarGroupLabel className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
+              Developer Mode
+            </SidebarGroupLabel>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                {devItems.map((item) => (
+                  <SidebarMenuItem key={item.title}>
+                    <SidebarMenuButton asChild>
+                      <NavLink
+                        to={item.url}
+                        className="text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+                        activeClassName="bg-primary/10 text-primary border-l-2 border-primary"
+                      >
+                        <item.icon className="mr-2 h-4 w-4" />
+                        {!collapsed && <span className="text-sm">{item.title}</span>}
+                      </NavLink>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        )}
       </SidebarContent>
 
       <SidebarFooter className="p-4">
         {!collapsed && (
-          <div className="flex items-center gap-2 text-[10px] font-mono text-muted-foreground">
-            <div className="h-2 w-2 rounded-full bg-success animate-pulse-glow" />
-            <span>System Healthy</span>
+          <div className="space-y-2">
+            <button
+              onClick={handleSwitchMode}
+              className="flex items-center gap-2 text-[10px] font-mono text-muted-foreground hover:text-foreground transition-colors w-full"
+            >
+              <Settings className="h-3 w-3" />
+              <span>Switch Mode</span>
+            </button>
+            <div className="flex items-center gap-2 text-[10px] font-mono text-muted-foreground">
+              <div className="h-2 w-2 rounded-full bg-success animate-pulse-glow" />
+              <span>System Healthy</span>
+            </div>
           </div>
         )}
         {collapsed && (

@@ -1,12 +1,14 @@
 import { Activity, Cpu, HardDrive, Radio, Shield, Clock } from "lucide-react";
 import { MetricCard, SectionHeader, StatusBadge, DataRow } from "@/components/dashboard/DashboardPrimitives";
-import { mockLauncherStatus, mockIdentity, mockGitStatus, mockPendingWrites } from "@/lib/mock-data";
+import { mockLauncherStatus, mockGitStatus, mockPendingWrites } from "@/lib/mock-data";
 import { AgentOrb } from "@/components/dashboard/AgentOrb";
 import { useUptime } from "@/hooks/use-uptime";
 import { PageTransition } from "@/components/dashboard/PageTransition";
+import { useApp } from "@/contexts/AppContext";
 
 const OverviewPage = () => {
-  const uptime = useUptime(16320); // ~4h 32m
+  const uptime = useUptime(16320);
+  const { identity, mode } = useApp();
 
   return (
     <PageTransition>
