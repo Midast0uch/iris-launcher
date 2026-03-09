@@ -214,7 +214,7 @@ const IdentityPage = () => {
               </div>
             </div>
 
-            <div className="flex items-center gap-3 bg-card rounded-lg border border-border p-4">
+            <div className="flex items-center gap-3 glass rounded-xl p-4">
               <Checkbox id="ack" checked={acknowledged} onCheckedChange={(c) => setAcknowledged(c === true)} />
               <label htmlFor="ack" className="text-sm text-foreground cursor-pointer select-none">
                 I have written all 12 words in order
