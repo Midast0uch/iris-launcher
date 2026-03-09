@@ -9,21 +9,13 @@ import { AppProvider, useApp } from "@/contexts/AppContext";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import { ParallaxBackground } from "@/components/dashboard/ParallaxBackground";
 import { ThemeToggle } from "@/components/dashboard/ThemeToggle";
-import OverviewPage from "./pages/OverviewPage";
-import IdentityPage from "./pages/IdentityPage";
-import ProjectsPage from "./pages/ProjectsPage";
-import TailscalePage from "./pages/TailscalePage";
-import GitPage from "./pages/GitPage";
-import DiffReviewPage from "./pages/DiffReviewPage";
-import RebuildPage from "./pages/RebuildPage";
-import GitHubPage from "./pages/GitHubPage";
+import { AnimatedRoutes } from "@/components/AnimatedRoutes";
 import FirstRunPage from "./pages/FirstRunPage";
 import ModeSelectPage from "./pages/ModeSelectPage";
-import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
-const DashboardLayout = ({ children }: { children: React.ReactNode }) => (
+const DashboardLayout = () => (
   <SidebarProvider>
     <ParallaxBackground />
     <div className="min-h-screen flex w-full relative">
@@ -40,7 +32,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => (
         </header>
         <main className="flex-1 p-6 overflow-auto">
           <div className="max-w-5xl mx-auto">
-            {children}
+            <AnimatedRoutes />
           </div>
         </main>
       </div>
@@ -65,25 +57,7 @@ const AppRoutes = () => {
     <Routes>
       <Route path="/first-run" element={<div className="min-h-screen"><FirstRunPage /></div>} />
       <Route path="/mode-select" element={<ModeSelectPage />} />
-      <Route path="*" element={
-        <DashboardLayout>
-          <Routes>
-            <Route path="/" element={<OverviewPage />} />
-            <Route path="/identity" element={<IdentityPage />} />
-            <Route path="/projects" element={<ProjectsPage />} />
-            <Route path="/tailscale" element={<TailscalePage />} />
-            {mode === "developer" && (
-              <>
-                <Route path="/developer/github" element={<GitHubPage />} />
-                <Route path="/developer/git" element={<GitPage />} />
-                <Route path="/developer/diff" element={<DiffReviewPage />} />
-                <Route path="/developer/rebuild" element={<RebuildPage />} />
-              </>
-            )}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </DashboardLayout>
-      } />
+      <Route path="*" element={<DashboardLayout />} />
     </Routes>
   );
 };
