@@ -3,7 +3,7 @@ import {
   FolderGit2,
   Fingerprint,
   LayoutDashboard,
-  Shield,
+  Network,
   HardDrive,
   Wrench,
   Settings,
