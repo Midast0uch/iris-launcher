@@ -46,7 +46,7 @@ const DiffReviewPage = () => {
               </div>
             </div>
             {/* Diff */}
-            <div className="p-4 bg-background font-mono text-xs overflow-x-auto">
+            <div className="p-4 glass-subtle font-mono text-xs overflow-x-auto">
               <pre className="whitespace-pre leading-relaxed">
                 {pw.diff.split("\n").map((line, i) => {
                   let lineClass = "text-muted-foreground";
