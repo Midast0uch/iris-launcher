@@ -3,7 +3,7 @@ import {
   FolderGit2,
   Fingerprint,
   LayoutDashboard,
-  Shield,
+  Network,
   HardDrive,
   Wrench,
   Settings,
@@ -29,7 +29,7 @@ const mainItems = [
   { title: "Overview", url: "/", icon: LayoutDashboard },
   { title: "Identity", url: "/identity", icon: Fingerprint },
   { title: "Projects", url: "/projects", icon: HardDrive },
-  { title: "Permissions", url: "/permissions", icon: Shield },
+  { title: "Tailscale", url: "/tailscale", icon: Network },
 ];
 
 const devItems = [

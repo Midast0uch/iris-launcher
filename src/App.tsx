@@ -9,7 +9,7 @@ import { AppProvider, useApp } from "@/contexts/AppContext";
 import OverviewPage from "./pages/OverviewPage";
 import IdentityPage from "./pages/IdentityPage";
 import ProjectsPage from "./pages/ProjectsPage";
-import PermissionsPage from "./pages/PermissionsPage";
+import TailscalePage from "./pages/TailscalePage";
 import GitPage from "./pages/GitPage";
 import DiffReviewPage from "./pages/DiffReviewPage";
 import RebuildPage from "./pages/RebuildPage";
@@ -72,7 +72,7 @@ const AppRoutes = () => {
             <Route path="/" element={<OverviewPage />} />
             <Route path="/identity" element={<IdentityPage />} />
             <Route path="/projects" element={<ProjectsPage />} />
-            <Route path="/permissions" element={<PermissionsPage />} />
+            <Route path="/tailscale" element={<TailscalePage />} />
             {mode === "developer" && (
               <>
                 <Route path="/developer/git" element={<GitPage />} />
