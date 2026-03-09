@@ -94,7 +94,7 @@ const IdentityPage = () => {
   }
 
   return (
-    <PageTransition>
+    <PageTransition variant="scale">
       <div className="space-y-8">
         <SectionHeader title="Post-Quantum Identity" description="Generate or import a Dilithium3 keypair" />
 

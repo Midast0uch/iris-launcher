@@ -11,7 +11,7 @@ const ProjectsPage = () => {
   const [activeProject, setActiveProject] = useState("development");
 
   return (
-    <PageTransition>
+    <PageTransition variant="slide-left">
       <div className="space-y-8">
         <SectionHeader
           title="Projects"
