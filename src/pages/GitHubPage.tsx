@@ -111,7 +111,7 @@ const GitHubPage = () => {
               </p>
             </div>
 
-            <div className="bg-card rounded-lg border border-border p-5 space-y-4">
+            <div className="glass rounded-xl p-5 space-y-4">
               <h3 className="text-sm font-bold text-foreground flex items-center gap-2">
                 <Lock className="h-4 w-4 text-primary" />
                 Personal Access Token
