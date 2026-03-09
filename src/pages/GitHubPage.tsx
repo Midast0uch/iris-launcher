@@ -238,7 +238,7 @@ const GitHubPage = () => {
               <p className="text-sm text-muted-foreground tracking-wide">Select a repository to link with IRIS.</p>
             </div>
 
-            <div className="glass-card rounded-2xl divide-y divide-[hsl(0_0%_100%/0.04)] overflow-hidden">
+            <div className="glass-card rounded-2xl divide-y divide-border overflow-hidden">
               {mockRepos.map((repo, i) => (
                 <motion.button
                   key={repo.name}
