@@ -178,14 +178,14 @@
   }
 
   .glass-strong {
-    background: hsl(225 12% 12% / 0.45);
+    background: var(--glass-bg);
     backdrop-filter: blur(60px) saturate(200%);
     -webkit-backdrop-filter: blur(60px) saturate(200%);
-    border: 1px solid hsl(0 0% 100% / 0.08);
+    border: 1px solid var(--glass-border);
     box-shadow:
       var(--glass-inner-glow),
-      0 8px 32px -8px hsl(0 0% 0% / 0.3),
-      0 0 0 0.5px hsl(0 0% 100% / 0.04);
+      0 8px 32px -8px hsl(0 0% 0% / 0.15),
+      0 0 0 0.5px var(--glass-highlight);
   }
 
   .glass-card {
