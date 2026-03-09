@@ -29,8 +29,11 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [mode, setModeState] = useState<AppMode>(() => {
     return (localStorage.getItem("iris-mode") as AppMode) || null;
   });
+  const [gitHubConnected, setGitHubConnectedState] = useState<boolean>(() => {
+    return localStorage.getItem("iris-github-connected") === "true";
+  });
 
-  const setIdentity = useCallback((id: IdentityData | null) => {
+
     setIdentityState(id);
     if (id) {
       localStorage.setItem("iris-identity", JSON.stringify(id));
