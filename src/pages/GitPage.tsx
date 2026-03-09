@@ -44,7 +44,7 @@ const GitPage = () => {
           </h3>
           <div className="space-y-1">
             {mockGitStatus.uncommittedFiles.map((file) => (
-              <div key={file} className="flex items-center gap-2 py-1.5 px-3 bg-background rounded border border-border">
+              <div key={file} className="flex items-center gap-2 py-1.5 px-3 glass-subtle rounded-lg">
                 <span className="text-[10px] font-mono text-warning">M</span>
                 <span className="text-xs font-mono text-foreground">{file}</span>
               </div>
