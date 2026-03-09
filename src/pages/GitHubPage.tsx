@@ -238,7 +238,7 @@ const GitHubPage = () => {
               <p className="text-sm text-muted-foreground tracking-wide">Select a repository to link with IRIS.</p>
             </div>
 
-            <div className="glass-card rounded-2xl divide-y divide-[hsl(0_0%_100%/0.04)] overflow-hidden">
+            <div className="glass-card rounded-2xl divide-y divide-border overflow-hidden">
               {mockRepos.map((repo, i) => (
                 <motion.button
                   key={repo.name}
@@ -246,7 +246,7 @@ const GitHubPage = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.06, type: "spring" as const, stiffness: 300, damping: 25 }}
                   onClick={() => handleSelectRepo(repo.name)}
-                  className={`w-full flex items-center justify-between p-4 text-left transition-colors hover:bg-[hsl(0_0%_100%/0.03)] ${
+                  className={`w-full flex items-center justify-between p-4 text-left transition-colors hover:bg-muted/30 ${
                     selectedRepo === repo.name ? "bg-primary/5" : ""
                   }`}
                 >
