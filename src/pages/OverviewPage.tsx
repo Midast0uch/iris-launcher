@@ -81,7 +81,7 @@ const OverviewPage = () => {
               <DataRow label="Drive Status" value={mockLauncherStatus.driveConnected ? "Connected" : "Disconnected"} />
               <DataRow label="Crash Flag" value="Clear" />
               <DataRow label="Version" value={mockLauncherStatus.version} />
-              <DataRow label="Biometric" value={mockIdentity.biometricActive ? "Active (TPM)" : "Inactive"} />
+              <DataRow label="Biometric" value={identity ? "Active (TPM)" : "No identity"} />
             </div>
           </div>
 
