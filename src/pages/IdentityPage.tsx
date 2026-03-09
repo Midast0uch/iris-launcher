@@ -30,7 +30,7 @@ const IdentityPage = () => {
       <div className="flex flex-wrap gap-2">
         <StatusBadge status="online" label="IDENTITY ACTIVE" />
         <StatusBadge status={mockIdentity.biometricActive ? "online" : "offline"} label={mockIdentity.biometricActive ? "BIOMETRIC ON" : "BIOMETRIC OFF"} />
-        <StatusBadge status="dormant" label="TORUS DORMANT" />
+        
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
