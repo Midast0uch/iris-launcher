@@ -18,7 +18,7 @@ export function AgentOrb({ active = true, size = "md" }: AgentOrbProps) {
     <div className="relative flex items-center justify-center">
       {active && (
         <motion.div
-          className="absolute rounded-full border border-primary/30"
+          className="absolute rounded-full border border-success/30"
           style={{ width: s.ring, height: s.ring }}
           animate={{
             scale: [0.8, 2.5],
