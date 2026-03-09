@@ -48,6 +48,7 @@ function generateMockPublicKey(type: "ed25519" | "rsa") {
 }
 
 const GitHubPage = () => {
+  const { setGitHubConnected } = useApp();
   const [step, setStep] = useState<ConnectStep>("idle");
   const [connection, setConnection] = useState<GitHubConnection | null>(null);
   const [selectedRepo, setSelectedRepo] = useState<string | null>(null);
