@@ -153,7 +153,7 @@ const FirstRunPage = () => {
                       setVerifyError(false);
                     }}
                     placeholder={`Enter word ${num}`}
-                    className="font-mono bg-card border-border text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-primary"
+                    className="font-mono glass-subtle border-0 text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-primary"
                   />
                 </div>
               ))}
