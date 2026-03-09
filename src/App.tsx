@@ -6,6 +6,9 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
 import { AppProvider, useApp } from "@/contexts/AppContext";
+import { ThemeProvider } from "@/contexts/ThemeContext";
+import { ParallaxBackground } from "@/components/dashboard/ParallaxBackground";
+import { ThemeToggle } from "@/components/dashboard/ThemeToggle";
 import OverviewPage from "./pages/OverviewPage";
 import IdentityPage from "./pages/IdentityPage";
 import ProjectsPage from "./pages/ProjectsPage";
@@ -22,14 +25,18 @@ const queryClient = new QueryClient();
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => (
   <SidebarProvider>
-    <div className="min-h-screen flex w-full">
+    <ParallaxBackground />
+    <div className="min-h-screen flex w-full relative">
       <AppSidebar />
       <div className="flex-1 flex flex-col">
-        <header className="h-12 flex items-center border-b border-[hsl(0_0%_100%/0.04)] px-4 glass-subtle">
-          <SidebarTrigger className="text-muted-foreground hover:text-foreground transition-colors" />
-          <span className="ml-3 text-[10px] uppercase tracking-[0.2em] text-muted-foreground font-medium">
-            IRIS Launcher
-          </span>
+        <header className="h-12 flex items-center justify-between border-b border-border px-4 glass-subtle">
+          <div className="flex items-center">
+            <SidebarTrigger className="text-muted-foreground hover:text-foreground transition-colors" />
+            <span className="ml-3 text-[10px] uppercase tracking-[0.2em] text-muted-foreground font-medium">
+              IRIS Launcher
+            </span>
+          </div>
+          <ThemeToggle />
         </header>
         <main className="flex-1 p-6 overflow-auto">
           <div className="max-w-5xl mx-auto">
@@ -83,15 +90,17 @@ const AppRoutes = () => {
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <AppProvider>
-        <BrowserRouter>
-          <AppRoutes />
-        </BrowserRouter>
-      </AppProvider>
-    </TooltipProvider>
+    <ThemeProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <AppProvider>
+          <BrowserRouter>
+            <AppRoutes />
+          </BrowserRouter>
+        </AppProvider>
+      </TooltipProvider>
+    </ThemeProvider>
   </QueryClientProvider>
 );
 
