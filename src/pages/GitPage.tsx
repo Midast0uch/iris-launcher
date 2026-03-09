@@ -54,7 +54,7 @@ const GitPage = () => {
       )}
 
       {/* Recent commits mock */}
-      <div className="bg-card rounded-lg border border-border p-5">
+      <div className="glass rounded-xl p-5">
         <h3 className="text-sm font-bold text-foreground mb-4">Commit History</h3>
         <div className="space-y-3">
           {[
