@@ -200,10 +200,6 @@ const FirstRunPage = () => {
                 <span className="text-muted-foreground font-mono">ALGORITHM</span>
                 <span className="font-mono text-accent">Dilithium3</span>
               </div>
-              <div className="flex justify-between text-xs">
-                <span className="text-muted-foreground font-mono">TORUS</span>
-                <span className="font-mono text-muted-foreground">DORMANT</span>
-              </div>
             </div>
             <Button
               className="w-full font-mono bg-primary text-primary-foreground hover:bg-primary/90"

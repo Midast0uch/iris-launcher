@@ -29,7 +29,7 @@ const OverviewPage = () => {
           <StatusBadge status="online" label="SYSTEM ONLINE" />
           <StatusBadge status={mockLauncherStatus.agentActive ? "online" : "offline"} label={mockLauncherStatus.agentActive ? "AGENT ACTIVE" : "AGENT IDLE"} />
           <StatusBadge status={mockLauncherStatus.driveConnected ? "online" : "warning"} label={mockLauncherStatus.driveConnected ? "DRIVE OK" : "DRIVE DISCONNECTED"} />
-          <StatusBadge status="dormant" label="TORUS DORMANT" />
+          
           {mockLauncherStatus.pendingWrites > 0 && (
             <StatusBadge status="warning" label={`${mockLauncherStatus.pendingWrites} PENDING WRITES`} />
           )}
