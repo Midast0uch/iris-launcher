@@ -107,7 +107,7 @@ const TailscalePage = () => {
               <DataRow label="Exit Node" value="iris-server (100.64.0.3)" />
             </div>
 
-            <div className="glass-card rounded-2xl divide-y divide-[hsl(0_0%_100%/0.04)]">
+            <div className="glass-card rounded-2xl divide-y divide-border">
               <div className="p-5 flex items-center justify-between">
                 <h3 className="text-sm font-semibold text-foreground flex items-center gap-3">
                   <LiquidIcon color="primary" size="sm"><Network className="h-4 w-4" /></LiquidIcon>
