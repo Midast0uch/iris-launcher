@@ -114,7 +114,7 @@ const IdentityPage = () => {
             </div>
           </div>
 
-          <div className="bg-card rounded-lg border border-border p-5">
+          <div className="glass rounded-xl p-5">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-sm font-bold text-foreground">Public Key</h3>
               <Button variant="outline" size="sm" onClick={handleCopy} className="h-7 text-xs font-mono border-border text-muted-foreground hover:text-foreground hover:bg-secondary">
