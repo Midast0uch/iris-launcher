@@ -48,7 +48,7 @@ export function AppSidebar() {
   const navigate = useNavigate();
 
   return (
-    <Sidebar collapsible="icon" className="border-r border-[hsl(0_0%_100%/0.04)]">
+    <Sidebar collapsible="icon" className="border-r border-border">
       <SidebarHeader className="p-4">
         {!collapsed && (
           <div className="flex items-center gap-3">
