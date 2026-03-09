@@ -3,6 +3,7 @@ import { SectionHeader, DataRow, StatusBadge, MetricCard } from "@/components/da
 import { mockIdentity } from "@/lib/mock-data";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { PageTransition } from "@/components/dashboard/PageTransition";
 
 const IdentityPage = () => {
   const [seedRevealed, setSeedRevealed] = useState(false);
