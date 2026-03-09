@@ -180,8 +180,8 @@ const GitHubPage = () => {
                 <button
                   key={repo.name}
                   onClick={() => handleSelectRepo(repo.name)}
-                  className={`w-full flex items-center justify-between p-4 text-left transition-colors hover:bg-secondary/30 ${
-                    selectedRepo === repo.name ? "bg-primary/5 border-l-2 border-l-primary" : ""
+                  className={`w-full flex items-center justify-between p-4 text-left transition-colors hover:bg-[hsl(0_0%_100%/0.03)] ${
+                    selectedRepo === repo.name ? "bg-primary/5" : ""
                   }`}
                 >
                   <div className="flex items-center gap-3">
