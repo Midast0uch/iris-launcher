@@ -108,7 +108,7 @@ interface DataRowProps {
 
 export function DataRow({ label, value, mono = true }: DataRowProps) {
   return (
-    <div className="flex items-center justify-between py-3 border-b border-[hsl(0_0%_100%/0.04)] last:border-0 group/row">
+    <div className="flex items-center justify-between py-3 border-b border-border last:border-0 group/row">
       <span className="text-xs text-muted-foreground tracking-wide">{label}</span>
       <span className={`text-sm ${mono ? "font-mono" : ""} text-foreground group-hover/row:text-primary transition-colors duration-200`}>{value}</span>
     </div>
