@@ -37,7 +37,7 @@ const GitPage = () => {
 
       {/* Uncommitted files */}
       {mockGitStatus.uncommittedFiles.length > 0 && (
-        <div className="bg-card rounded-lg border border-warning/20 p-5">
+        <div className="glass rounded-xl border-warning/20 p-5">
           <h3 className="text-sm font-bold text-foreground mb-3 flex items-center gap-2">
             <AlertTriangle className="h-4 w-4 text-warning" />
             Uncommitted Files
