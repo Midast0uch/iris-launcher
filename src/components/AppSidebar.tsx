@@ -34,6 +34,7 @@ const mainItems = [
 ];
 
 const devItems = [
+  { title: "GitHub", url: "/developer/github", icon: Github },
   { title: "Git & Source", url: "/developer/git", icon: FolderGit2 },
   { title: "Diff Review", url: "/developer/diff", icon: Activity },
   { title: "Rebuild", url: "/developer/rebuild", icon: Wrench },

@@ -76,6 +76,7 @@ const AppRoutes = () => {
             <Route path="/tailscale" element={<TailscalePage />} />
             {mode === "developer" && (
               <>
+                <Route path="/developer/github" element={<GitHubPage />} />
                 <Route path="/developer/git" element={<GitPage />} />
                 <Route path="/developer/diff" element={<DiffReviewPage />} />
                 <Route path="/developer/rebuild" element={<RebuildPage />} />
