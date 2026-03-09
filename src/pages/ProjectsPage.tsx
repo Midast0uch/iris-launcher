@@ -3,6 +3,7 @@ import { SectionHeader, StatusBadge } from "@/components/dashboard/DashboardPrim
 import { mockProjects } from "@/lib/mock-data";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { PageTransition } from "@/components/dashboard/PageTransition";
 
 const ProjectsPage = () => {
   const [activeProject, setActiveProject] = useState("development");
