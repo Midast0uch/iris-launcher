@@ -100,7 +100,7 @@ const IdentityPage = () => {
             <MetricCard label="Created" value={new Date(identity.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric" })} icon={<Key className="h-4 w-4" />} accent="success" subtitle={new Date(identity.createdAt).getFullYear().toString()} />
           </div>
 
-          <div className="bg-card rounded-lg border border-border p-5">
+          <div className="glass rounded-xl p-5">
             <h3 className="text-sm font-bold text-foreground mb-4 flex items-center gap-2">
               <Fingerprint className="h-4 w-4 text-primary" />
               Identity Details
@@ -114,7 +114,7 @@ const IdentityPage = () => {
             </div>
           </div>
 
-          <div className="bg-card rounded-lg border border-border p-5">
+          <div className="glass rounded-xl p-5">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-sm font-bold text-foreground">Public Key</h3>
               <Button variant="outline" size="sm" onClick={handleCopy} className="h-7 text-xs font-mono border-border text-muted-foreground hover:text-foreground hover:bg-secondary">
@@ -122,7 +122,7 @@ const IdentityPage = () => {
                 {copied ? "Copied" : "Copy"}
               </Button>
             </div>
-            <div className="bg-background rounded border border-border p-3 font-mono text-xs text-primary break-all leading-relaxed">
+            <div className="glass-subtle rounded-lg p-3 font-mono text-xs text-primary break-all leading-relaxed">
               {identity.publicKey}
             </div>
           </div>
@@ -199,14 +199,14 @@ const IdentityPage = () => {
 
             <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
               {SEED_PHRASE.map((word, i) => (
-                <div key={i} className="bg-card rounded-lg border border-warning/20 p-3 text-center animate-fade-in" style={{ animationDelay: `${i * 60}ms`, animationFillMode: "backwards" }}>
+                <div key={i} className="glass rounded-xl border-warning/20 p-3 text-center animate-fade-in" style={{ animationDelay: `${i * 60}ms`, animationFillMode: "backwards" }}>
                   <span className="text-[10px] font-mono text-muted-foreground block mb-0.5">{i + 1}</span>
                   <span className="text-sm font-mono font-bold text-warning">{word}</span>
                 </div>
               ))}
             </div>
 
-            <div className="bg-card rounded-lg border border-destructive/20 p-4 flex items-start gap-3">
+            <div className="glass rounded-xl border-destructive/20 p-4 flex items-start gap-3">
               <AlertTriangle className="h-4 w-4 text-destructive mt-0.5 shrink-0" />
               <div className="text-xs text-muted-foreground space-y-1">
                 <p className="font-bold text-destructive">This phrase is shown once and never stored.</p>
@@ -214,7 +214,7 @@ const IdentityPage = () => {
               </div>
             </div>
 
-            <div className="flex items-center gap-3 bg-card rounded-lg border border-border p-4">
+            <div className="flex items-center gap-3 glass rounded-xl p-4">
               <Checkbox id="ack" checked={acknowledged} onCheckedChange={(c) => setAcknowledged(c === true)} />
               <label htmlFor="ack" className="text-sm text-foreground cursor-pointer select-none">
                 I have written all 12 words in order
@@ -262,7 +262,7 @@ const IdentityPage = () => {
                       setVerifyError(false);
                     }}
                     placeholder={`Enter word ${num}`}
-                    className="font-mono bg-card border-border text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-primary"
+                    className="font-mono glass-subtle border-0 text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-primary"
                   />
                 </div>
               ))}
@@ -309,7 +309,7 @@ const IdentityPage = () => {
                       setImportWords(updated);
                       setImportError("");
                     }}
-                    className="font-mono text-sm text-center bg-card border-border text-foreground placeholder:text-muted-foreground focus:border-accent focus:ring-accent h-10 px-1"
+                    className="font-mono text-sm text-center glass-subtle border-0 text-foreground placeholder:text-muted-foreground focus:border-accent focus:ring-accent h-10 px-1"
                     placeholder="····"
                   />
                 </div>

@@ -25,13 +25,13 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => (
     <div className="min-h-screen flex w-full">
       <AppSidebar />
       <div className="flex-1 flex flex-col">
-        <header className="h-12 flex items-center border-b border-border px-4 bg-card/50">
+        <header className="h-12 flex items-center border-b border-[hsl(0_0%_100%/0.06)] px-4 glass-subtle">
           <SidebarTrigger className="text-muted-foreground hover:text-foreground" />
-          <span className="ml-3 text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
-            IRIS Launcher Control Panel
+          <span className="ml-3 text-[10px] uppercase tracking-widest text-muted-foreground">
+            IRIS Launcher
           </span>
         </header>
-        <main className="flex-1 p-6 overflow-auto grid-pattern scanline">
+        <main className="flex-1 p-6 overflow-auto">
           <div className="max-w-5xl mx-auto">
             {children}
           </div>

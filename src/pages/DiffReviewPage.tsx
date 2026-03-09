@@ -21,9 +21,9 @@ const DiffReviewPage = () => {
 
       <div className="space-y-4">
         {mockPendingWrites.map((pw) => (
-          <div key={pw.id} className="bg-card rounded-lg border border-warning/20 overflow-hidden">
+          <div key={pw.id} className="glass rounded-xl border-warning/20 overflow-hidden">
             {/* Header */}
-            <div className="flex items-center justify-between p-4 border-b border-border">
+            <div className="flex items-center justify-between p-4 border-b border-[hsl(0_0%_100%/0.06)]">
               <div className="flex items-center gap-3">
                 <FileCode className="h-4 w-4 text-warning" />
                 <div>
@@ -46,7 +46,7 @@ const DiffReviewPage = () => {
               </div>
             </div>
             {/* Diff */}
-            <div className="p-4 bg-background font-mono text-xs overflow-x-auto">
+            <div className="p-4 glass-subtle font-mono text-xs overflow-x-auto">
               <pre className="whitespace-pre leading-relaxed">
                 {pw.diff.split("\n").map((line, i) => {
                   let lineClass = "text-muted-foreground";
@@ -69,7 +69,7 @@ const DiffReviewPage = () => {
       </div>
 
       {mockPendingWrites.length === 0 && (
-        <div className="bg-card rounded-lg border border-border p-12 text-center">
+        <div className="glass rounded-xl p-12 text-center">
           <Activity className="h-8 w-8 text-muted-foreground mx-auto mb-3" />
           <p className="text-sm text-muted-foreground">No pending reviews</p>
           <p className="text-xs text-muted-foreground mt-1">Agent writes to src/ will appear here for approval</p>

@@ -111,7 +111,7 @@ const GitHubPage = () => {
               </p>
             </div>
 
-            <div className="bg-card rounded-lg border border-border p-5 space-y-4">
+            <div className="glass rounded-xl p-5 space-y-4">
               <h3 className="text-sm font-bold text-foreground flex items-center gap-2">
                 <Lock className="h-4 w-4 text-primary" />
                 Personal Access Token
@@ -125,7 +125,7 @@ const GitHubPage = () => {
                 value={tokenInput}
                 onChange={(e) => setTokenInput(e.target.value)}
                 placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"
-                className="font-mono bg-background border-border text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-primary"
+                className="font-mono glass-subtle border-0 text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-primary"
               />
               <Button
                 className="w-full font-mono bg-primary text-primary-foreground hover:bg-primary/90"
@@ -175,13 +175,13 @@ const GitHubPage = () => {
               <p className="text-sm text-muted-foreground">Select a repository to link with IRIS.</p>
             </div>
 
-            <div className="bg-card rounded-lg border border-border divide-y divide-border">
+            <div className="glass rounded-xl divide-y divide-[hsl(0_0%_100%/0.05)] overflow-hidden">
               {mockRepos.map((repo) => (
                 <button
                   key={repo.name}
                   onClick={() => handleSelectRepo(repo.name)}
-                  className={`w-full flex items-center justify-between p-4 text-left transition-colors hover:bg-secondary/30 ${
-                    selectedRepo === repo.name ? "bg-primary/5 border-l-2 border-l-primary" : ""
+                  className={`w-full flex items-center justify-between p-4 text-left transition-colors hover:bg-[hsl(0_0%_100%/0.03)] ${
+                    selectedRepo === repo.name ? "bg-primary/5" : ""
                   }`}
                 >
                   <div className="flex items-center gap-3">
@@ -227,7 +227,7 @@ const GitHubPage = () => {
         {/* Connected — show details */}
         {step === "connected" && connection && (
           <div className="animate-enter space-y-6">
-            <div className="bg-card rounded-lg border border-border p-5">
+            <div className="glass rounded-xl p-5">
               <h3 className="text-sm font-bold text-foreground mb-4 flex items-center gap-2">
                 <Github className="h-4 w-4 text-foreground" />
                 Repository Details
@@ -241,7 +241,7 @@ const GitHubPage = () => {
               </div>
             </div>
 
-            <div className="bg-card rounded-lg border border-border p-5">
+            <div className="glass rounded-xl p-5">
               <h3 className="text-sm font-bold text-foreground mb-4 flex items-center gap-2">
                 <GitBranch className="h-4 w-4 text-primary" />
                 What's Enabled

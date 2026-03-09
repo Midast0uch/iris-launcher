@@ -14,7 +14,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ['Space Grotesk', 'sans-serif'],
+        display: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
       },
       colors: {
@@ -101,8 +101,8 @@ export default {
           "100%": { transform: "scale(1)", opacity: "1" },
         },
         "orb-pulse": {
-          "0%, 100%": { transform: "scale(1)", boxShadow: "0 0 20px hsl(185 100% 50% / 0.3)" },
-          "50%": { transform: "scale(1.08)", boxShadow: "0 0 35px hsl(185 100% 50% / 0.6)" },
+          "0%, 100%": { transform: "scale(1)", boxShadow: "0 0 20px hsl(210 100% 62% / 0.2)" },
+          "50%": { transform: "scale(1.08)", boxShadow: "0 0 35px hsl(210 100% 62% / 0.4)" },
         },
         "orb-ring": {
           "0%": { transform: "scale(0.8)", opacity: "0.8" },

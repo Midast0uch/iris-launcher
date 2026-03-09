@@ -37,14 +37,14 @@ const GitPage = () => {
 
       {/* Uncommitted files */}
       {mockGitStatus.uncommittedFiles.length > 0 && (
-        <div className="bg-card rounded-lg border border-warning/20 p-5">
+        <div className="glass rounded-xl border-warning/20 p-5">
           <h3 className="text-sm font-bold text-foreground mb-3 flex items-center gap-2">
             <AlertTriangle className="h-4 w-4 text-warning" />
             Uncommitted Files
           </h3>
           <div className="space-y-1">
             {mockGitStatus.uncommittedFiles.map((file) => (
-              <div key={file} className="flex items-center gap-2 py-1.5 px-3 bg-background rounded border border-border">
+              <div key={file} className="flex items-center gap-2 py-1.5 px-3 glass-subtle rounded-lg">
                 <span className="text-[10px] font-mono text-warning">M</span>
                 <span className="text-xs font-mono text-foreground">{file}</span>
               </div>
@@ -54,7 +54,7 @@ const GitPage = () => {
       )}
 
       {/* Recent commits mock */}
-      <div className="bg-card rounded-lg border border-border p-5">
+      <div className="glass rounded-xl p-5">
         <h3 className="text-sm font-bold text-foreground mb-4">Commit History</h3>
         <div className="space-y-3">
           {[
@@ -64,14 +64,14 @@ const GitPage = () => {
             { hash: "a9f3e2d", message: "agent: refactor file_download error handling", time: "6 hours ago", auto: true },
             { hash: "8c7b1a4", message: "user: manual commit before experiment", time: "1 day ago", auto: false },
           ].map((commit) => (
-            <div key={commit.hash} className="flex items-center gap-3 py-2 border-b border-border/30 last:border-0">
+            <div key={commit.hash} className="flex items-center gap-3 py-2 border-b border-[hsl(0_0%_100%/0.05)] last:border-0">
               <span className="font-mono text-xs text-primary w-16">{commit.hash}</span>
               <div className="flex-1">
                 <span className="text-xs font-mono text-foreground">{commit.message}</span>
               </div>
               <span className="text-[10px] font-mono text-muted-foreground">{commit.time}</span>
               {commit.auto && (
-                <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-secondary border border-border text-muted-foreground">AUTO</span>
+                <span className="text-[9px] font-mono px-1.5 py-0.5 rounded-md glass-subtle text-muted-foreground">AUTO</span>
               )}
             </div>
           ))}

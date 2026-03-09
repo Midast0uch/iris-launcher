@@ -43,32 +43,28 @@ const devItems = [
 export function AppSidebar() {
   const { state } = useSidebar();
   const collapsed = state === "collapsed";
-  const { mode, setMode } = useApp();
+  const { mode } = useApp();
   const navigate = useNavigate();
 
-  const handleSwitchMode = () => {
-    navigate("/mode-select");
-  };
-
   return (
-    <Sidebar collapsible="icon" className="border-r border-border">
+    <Sidebar collapsible="icon" className="border-r border-[hsl(0_0%_100%/0.06)]">
       <SidebarHeader className="p-4">
         {!collapsed && (
-          <div className="flex items-center gap-2">
-            <div className="h-8 w-8 rounded-md bg-primary/20 border border-primary/30 flex items-center justify-center glow-primary">
+          <div className="flex items-center gap-3">
+            <div className="h-9 w-9 rounded-xl bg-primary/15 border border-primary/20 flex items-center justify-center">
               <span className="font-mono text-sm font-bold text-primary">IR</span>
             </div>
             <div>
-              <h2 className="text-sm font-bold text-foreground">IRIS Launcher</h2>
-              <p className="text-[10px] font-mono text-muted-foreground">
-                {mode === "developer" ? "Developer Mode" : "Personal Mode"}
+              <h2 className="text-sm font-semibold text-foreground">IRIS Launcher</h2>
+              <p className="text-[10px] text-muted-foreground">
+                {mode === "developer" ? "Developer" : "Personal"}
               </p>
             </div>
           </div>
         )}
         {collapsed && (
           <div className="flex justify-center">
-            <div className="h-8 w-8 rounded-md bg-primary/20 border border-primary/30 flex items-center justify-center glow-primary">
+            <div className="h-9 w-9 rounded-xl bg-primary/15 border border-primary/20 flex items-center justify-center">
               <span className="font-mono text-xs font-bold text-primary">IR</span>
             </div>
           </div>
@@ -77,7 +73,7 @@ export function AppSidebar() {
 
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
+          <SidebarGroupLabel className="text-[10px] font-medium uppercase tracking-widest text-muted-foreground px-3">
             System
           </SidebarGroupLabel>
           <SidebarGroupContent>
@@ -88,8 +84,8 @@ export function AppSidebar() {
                     <NavLink
                       to={item.url}
                       end={item.url === "/"}
-                      className="text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
-                      activeClassName="bg-primary/10 text-primary border-l-2 border-primary"
+                      className="text-sidebar-foreground hover:bg-[hsl(0_0%_100%/0.06)] hover:text-foreground rounded-lg transition-all"
+                      activeClassName="bg-primary/10 text-primary"
                     >
                       <item.icon className="mr-2 h-4 w-4" />
                       {!collapsed && <span className="text-sm">{item.title}</span>}
@@ -103,8 +99,8 @@ export function AppSidebar() {
 
         {mode === "developer" && (
           <SidebarGroup>
-            <SidebarGroupLabel className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
-              Developer Mode
+            <SidebarGroupLabel className="text-[10px] font-medium uppercase tracking-widest text-muted-foreground px-3">
+              Developer
             </SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu>
@@ -113,8 +109,8 @@ export function AppSidebar() {
                     <SidebarMenuButton asChild>
                       <NavLink
                         to={item.url}
-                        className="text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
-                        activeClassName="bg-primary/10 text-primary border-l-2 border-primary"
+                        className="text-sidebar-foreground hover:bg-[hsl(0_0%_100%/0.06)] hover:text-foreground rounded-lg transition-all"
+                        activeClassName="bg-primary/10 text-primary"
                       >
                         <item.icon className="mr-2 h-4 w-4" />
                         {!collapsed && <span className="text-sm">{item.title}</span>}
@@ -132,13 +128,13 @@ export function AppSidebar() {
         {!collapsed && (
           <div className="space-y-2">
             <button
-              onClick={handleSwitchMode}
-              className="flex items-center gap-2 text-[10px] font-mono text-muted-foreground hover:text-foreground transition-colors w-full"
+              onClick={() => navigate("/mode-select")}
+              className="flex items-center gap-2 text-[10px] text-muted-foreground hover:text-foreground transition-colors w-full"
             >
               <Settings className="h-3 w-3" />
               <span>Switch Mode</span>
             </button>
-            <div className="flex items-center gap-2 text-[10px] font-mono text-muted-foreground">
+            <div className="flex items-center gap-2 text-[10px] text-muted-foreground">
               <div className="h-2 w-2 rounded-full bg-success animate-pulse-glow" />
               <span>System Healthy</span>
             </div>

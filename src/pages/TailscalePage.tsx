@@ -125,7 +125,7 @@ const TailscalePage = () => {
         {status === "connected" && (
           <div className="animate-enter space-y-6">
             {/* Connection details */}
-            <div className="bg-card rounded-lg border border-border p-5">
+            <div className="glass rounded-xl p-5">
               <h3 className="text-sm font-bold text-foreground mb-4 flex items-center gap-2">
                 <Signal className="h-4 w-4 text-primary" />
                 Connection Details
@@ -140,7 +140,7 @@ const TailscalePage = () => {
             </div>
 
             {/* Nodes list */}
-            <div className="bg-card rounded-lg border border-border divide-y divide-border">
+            <div className="glass rounded-xl divide-y divide-[hsl(0_0%_100%/0.05)]">
               <div className="p-4 flex items-center justify-between">
                 <h3 className="text-sm font-bold text-foreground flex items-center gap-2">
                   <Network className="h-4 w-4 text-primary" />
@@ -152,7 +152,7 @@ const TailscalePage = () => {
                 </Button>
               </div>
               {nodes.map((node) => (
-                <div key={node.id} className="flex items-center justify-between p-4 hover:bg-secondary/30 transition-colors">
+                <div key={node.id} className="flex items-center justify-between p-4 hover:bg-[hsl(0_0%_100%/0.03)] transition-colors">
                   <div className="flex items-center gap-3">
                     <div className={`h-8 w-8 rounded-md flex items-center justify-center ${
                       node.online ? "bg-success/15 border border-success/30 text-success" : "bg-secondary border border-border text-muted-foreground"
@@ -184,7 +184,7 @@ const TailscalePage = () => {
             </div>
 
             {/* Security note */}
-            <div className="bg-card rounded-lg border border-border p-5">
+            <div className="glass rounded-xl p-5">
               <div className="flex items-start gap-3">
                 <Shield className="h-5 w-5 text-warning mt-0.5" />
                 <div className="text-xs text-muted-foreground space-y-1">

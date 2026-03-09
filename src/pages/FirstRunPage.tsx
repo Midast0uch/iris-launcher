@@ -84,7 +84,7 @@ const FirstRunPage = () => {
               {SEED_PHRASE.map((word, i) => (
                 <div
                   key={i}
-                  className="bg-card rounded-lg border border-warning/20 p-3 text-center animate-fade-in"
+                  className="glass rounded-xl border-warning/20 p-3 text-center animate-fade-in"
                   style={{ animationDelay: `${i * 60}ms`, animationFillMode: "backwards" }}
                 >
                   <span className="text-[10px] font-mono text-muted-foreground block mb-0.5">{i + 1}</span>
@@ -94,7 +94,7 @@ const FirstRunPage = () => {
             </div>
 
             {/* Warning */}
-            <div className="bg-card rounded-lg border border-destructive/20 p-4 flex items-start gap-3">
+            <div className="glass rounded-xl border-destructive/20 p-4 flex items-start gap-3">
               <AlertTriangle className="h-4 w-4 text-destructive mt-0.5 shrink-0" />
               <div className="text-xs text-muted-foreground space-y-1">
                 <p className="font-bold text-destructive">This phrase is shown once and never stored.</p>
@@ -103,7 +103,7 @@ const FirstRunPage = () => {
             </div>
 
             {/* Acknowledgment */}
-            <div className="flex items-center gap-3 bg-card rounded-lg border border-border p-4">
+            <div className="flex items-center gap-3 glass rounded-xl p-4">
               <Checkbox
                 id="ack"
                 checked={acknowledged}
@@ -153,7 +153,7 @@ const FirstRunPage = () => {
                       setVerifyError(false);
                     }}
                     placeholder={`Enter word ${num}`}
-                    className="font-mono bg-card border-border text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-primary"
+                    className="font-mono glass-subtle border-0 text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-primary"
                   />
                 </div>
               ))}
@@ -191,7 +191,7 @@ const FirstRunPage = () => {
                 Your Dilithium3 keypair is stored in the OS keychain with biometric protection.
               </p>
             </div>
-            <div className="bg-card rounded-lg border border-border p-4 space-y-2 text-left">
+            <div className="glass rounded-xl p-4 space-y-2 text-left">
               <div className="flex justify-between text-xs">
                 <span className="text-muted-foreground font-mono">NODE ID</span>
                 <span className="font-mono text-primary">a3f9d2c1e8b74f6d</span>
