@@ -85,7 +85,7 @@ const OverviewPage = () => {
             </div>
           </div>
 
-          <div className="bg-card rounded-lg border border-border p-5">
+          <div className="glass rounded-xl p-5">
             <h3 className="text-sm font-bold text-foreground mb-4 flex items-center gap-2">
               <HardDrive className="h-4 w-4 text-primary" />
               Git Status
