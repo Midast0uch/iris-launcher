@@ -199,7 +199,7 @@ const IdentityPage = () => {
 
             <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
               {SEED_PHRASE.map((word, i) => (
-                <div key={i} className="bg-card rounded-lg border border-warning/20 p-3 text-center animate-fade-in" style={{ animationDelay: `${i * 60}ms`, animationFillMode: "backwards" }}>
+                <div key={i} className="glass rounded-xl border-warning/20 p-3 text-center animate-fade-in" style={{ animationDelay: `${i * 60}ms`, animationFillMode: "backwards" }}>
                   <span className="text-[10px] font-mono text-muted-foreground block mb-0.5">{i + 1}</span>
                   <span className="text-sm font-mono font-bold text-warning">{word}</span>
                 </div>
