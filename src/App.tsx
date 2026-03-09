@@ -72,7 +72,7 @@ const AppRoutes = () => {
             <Route path="/" element={<OverviewPage />} />
             <Route path="/identity" element={<IdentityPage />} />
             <Route path="/projects" element={<ProjectsPage />} />
-            <Route path="/permissions" element={<PermissionsPage />} />
+            <Route path="/tailscale" element={<TailscalePage />} />
             {mode === "developer" && (
               <>
                 <Route path="/developer/git" element={<GitPage />} />
