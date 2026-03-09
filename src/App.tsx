@@ -12,6 +12,7 @@ import PermissionsPage from "./pages/PermissionsPage";
 import GitPage from "./pages/GitPage";
 import DiffReviewPage from "./pages/DiffReviewPage";
 import RebuildPage from "./pages/RebuildPage";
+import FirstRunPage from "./pages/FirstRunPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -43,18 +44,29 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <DashboardLayout>
-          <Routes>
-            <Route path="/" element={<OverviewPage />} />
-            <Route path="/identity" element={<IdentityPage />} />
-            <Route path="/projects" element={<ProjectsPage />} />
-            <Route path="/permissions" element={<PermissionsPage />} />
-            <Route path="/developer/git" element={<GitPage />} />
-            <Route path="/developer/diff" element={<DiffReviewPage />} />
-            <Route path="/developer/rebuild" element={<RebuildPage />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </DashboardLayout>
+        <Routes>
+          {/* First-run has no sidebar */}
+          <Route path="/first-run" element={
+            <div className="min-h-screen grid-pattern scanline">
+              <FirstRunPage />
+            </div>
+          } />
+          {/* Dashboard routes */}
+          <Route path="*" element={
+            <DashboardLayout>
+              <Routes>
+                <Route path="/" element={<OverviewPage />} />
+                <Route path="/identity" element={<IdentityPage />} />
+                <Route path="/projects" element={<ProjectsPage />} />
+                <Route path="/permissions" element={<PermissionsPage />} />
+                <Route path="/developer/git" element={<GitPage />} />
+                <Route path="/developer/diff" element={<DiffReviewPage />} />
+                <Route path="/developer/rebuild" element={<RebuildPage />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </DashboardLayout>
+          } />
+        </Routes>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
