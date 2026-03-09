@@ -84,7 +84,7 @@ const FirstRunPage = () => {
               {SEED_PHRASE.map((word, i) => (
                 <div
                   key={i}
-                  className="bg-card rounded-lg border border-warning/20 p-3 text-center animate-fade-in"
+                  className="glass rounded-xl border-warning/20 p-3 text-center animate-fade-in"
                   style={{ animationDelay: `${i * 60}ms`, animationFillMode: "backwards" }}
                 >
                   <span className="text-[10px] font-mono text-muted-foreground block mb-0.5">{i + 1}</span>
