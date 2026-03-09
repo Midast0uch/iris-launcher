@@ -25,15 +25,15 @@ const ProjectsPage = () => {
         {mockProjects.map((project) => {
           const isActive = project.id === activeProject;
           return (
-            <div
-              key={project.id}
-              className={`bg-card rounded-lg border p-5 transition-all cursor-pointer ${
-                isActive
-                  ? "border-primary/40 glow-primary"
-                  : "border-border hover:border-primary/20"
-              }`}
-              onClick={() => setActiveProject(project.id)}
-            >
+             <div
+               key={project.id}
+               className={`glass rounded-xl p-5 transition-all cursor-pointer ${
+                 isActive
+                   ? "border-primary/40 glow-primary"
+                   : "hover:bg-[hsl(230_15%_14%/0.5)]"
+               }`}
+               onClick={() => setActiveProject(project.id)}
+             >
               <div className="flex items-start justify-between">
                 <div className="flex items-start gap-3">
                   <div className={`mt-0.5 h-10 w-10 rounded-lg flex items-center justify-center ${
