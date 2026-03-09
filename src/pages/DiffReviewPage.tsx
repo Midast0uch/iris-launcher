@@ -23,7 +23,7 @@ const DiffReviewPage = () => {
         {mockPendingWrites.map((pw) => (
           <div key={pw.id} className="glass rounded-xl border-warning/20 overflow-hidden">
             {/* Header */}
-            <div className="flex items-center justify-between p-4 border-b border-border">
+            <div className="flex items-center justify-between p-4 border-b border-[hsl(0_0%_100%/0.06)]">
               <div className="flex items-center gap-3">
                 <FileCode className="h-4 w-4 text-warning" />
                 <div>
