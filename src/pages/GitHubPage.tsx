@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useApp } from "@/contexts/AppContext";
 import { Github, Link, Unlink, GitBranch, Lock, Globe, CheckCircle, ArrowRight, ExternalLink, RefreshCw, KeyRound, Copy, Trash2, Plus, ShieldCheck } from "lucide-react";
 import { SectionHeader, StatusBadge, DataRow } from "@/components/dashboard/DashboardPrimitives";
 import { Button } from "@/components/ui/button";
