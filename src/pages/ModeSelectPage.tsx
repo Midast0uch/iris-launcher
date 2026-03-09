@@ -48,7 +48,7 @@ const ModeSelectPage = () => {
           {/* Developer Mode */}
           <button
             onClick={() => handleSelect("developer")}
-            className="group bg-card rounded-xl border border-border p-6 text-left transition-all hover:border-accent/50 hover:shadow-[0_0_20px_hsl(var(--accent)/0.15)] focus:outline-none focus:border-accent"
+            className="group glass rounded-2xl p-6 text-left transition-all hover:bg-[hsl(230_15%_14%/0.55)] hover:shadow-[0_0_30px_hsl(var(--accent)/0.1)] focus:outline-none"
           >
             <div className="h-12 w-12 rounded-lg bg-accent/15 border border-accent/30 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
               <Code2 className="h-6 w-6 text-accent" />

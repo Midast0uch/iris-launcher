@@ -191,7 +191,7 @@ const FirstRunPage = () => {
                 Your Dilithium3 keypair is stored in the OS keychain with biometric protection.
               </p>
             </div>
-            <div className="bg-card rounded-lg border border-border p-4 space-y-2 text-left">
+            <div className="glass rounded-xl p-4 space-y-2 text-left">
               <div className="flex justify-between text-xs">
                 <span className="text-muted-foreground font-mono">NODE ID</span>
                 <span className="font-mono text-primary">a3f9d2c1e8b74f6d</span>

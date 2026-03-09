@@ -309,7 +309,7 @@ const IdentityPage = () => {
                       setImportWords(updated);
                       setImportError("");
                     }}
-                    className="font-mono text-sm text-center bg-card border-border text-foreground placeholder:text-muted-foreground focus:border-accent focus:ring-accent h-10 px-1"
+                    className="font-mono text-sm text-center glass-subtle border-0 text-foreground placeholder:text-muted-foreground focus:border-accent focus:ring-accent h-10 px-1"
                     placeholder="····"
                   />
                 </div>
