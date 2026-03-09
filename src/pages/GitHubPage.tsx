@@ -127,7 +127,7 @@ const GitHubPage = () => {
   };
 
   return (
-    <PageTransition>
+    <PageTransition variant="slide-left">
       <div className="space-y-8">
         <SectionHeader
           title="GitHub Connection"

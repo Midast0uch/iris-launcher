@@ -42,7 +42,7 @@ const TailscalePage = () => {
   const onlineCount = nodes.filter((n) => n.online).length;
 
   return (
-    <PageTransition>
+    <PageTransition variant="fade">
       <div className="space-y-8">
         <SectionHeader
           title="Tailscale Network"

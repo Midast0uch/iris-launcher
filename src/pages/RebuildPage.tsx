@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 
 const RebuildPage = () => {
   return (
-    <PageTransition>
+    <PageTransition variant="scale">
       <div className="space-y-8">
         <SectionHeader
           title="Rebuild Pipeline"

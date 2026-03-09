@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 const DiffReviewPage = () => {
   return (
     <GitHubGate>
-      <PageTransition>
+      <PageTransition variant="blur">
         <div className="space-y-8">
           <SectionHeader
             title="Diff Review"

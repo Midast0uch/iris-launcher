@@ -23,7 +23,7 @@ const OverviewPage = () => {
   const { identity, mode } = useApp();
 
   return (
-    <PageTransition>
+    <PageTransition variant="blur">
       <div className="space-y-8">
         <SectionHeader
           title="System Overview"

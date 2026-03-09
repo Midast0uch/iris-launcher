@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 const GitPage = () => {
   return (
     <GitHubGate>
-      <PageTransition>
+      <PageTransition variant="slide-up">
         <div className="space-y-8">
           <SectionHeader
             title="Git & Source Control"
