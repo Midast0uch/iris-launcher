@@ -103,7 +103,7 @@ const FirstRunPage = () => {
             </div>
 
             {/* Acknowledgment */}
-            <div className="flex items-center gap-3 bg-card rounded-lg border border-border p-4">
+            <div className="flex items-center gap-3 glass rounded-xl p-4">
               <Checkbox
                 id="ack"
                 checked={acknowledged}
