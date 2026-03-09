@@ -3,6 +3,7 @@ import { SectionHeader, StatusBadge } from "@/components/dashboard/DashboardPrim
 import { mockNetworkPermissions } from "@/lib/mock-data";
 import { Switch } from "@/components/ui/switch";
 import { useState } from "react";
+import { PageTransition } from "@/components/dashboard/PageTransition";
 
 const PermissionsPage = () => {
   const [permissions, setPermissions] = useState(mockNetworkPermissions);
