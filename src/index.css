@@ -7,23 +7,23 @@
 @layer base {
   :root,
   .dark {
-    --background: 225 12% 7%;
+    --background: 0 0% 8%;
     --foreground: 0 0% 96%;
 
-    --card: 225 12% 13% / 0.3;
+    --card: 0 0% 12% / 0.3;
     --card-foreground: 0 0% 96%;
 
-    --popover: 225 12% 11% / 0.8;
+    --popover: 0 0% 10% / 0.8;
     --popover-foreground: 0 0% 96%;
 
     --primary: 215 100% 60%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 225 10% 16% / 0.4;
+    --secondary: 0 0% 15% / 0.4;
     --secondary-foreground: 0 0% 78%;
 
-    --muted: 225 8% 15% / 0.4;
-    --muted-foreground: 220 8% 52%;
+    --muted: 0 0% 14% / 0.4;
+    --muted-foreground: 0 0% 50%;
 
     --accent: 275 65% 62%;
     --accent-foreground: 0 0% 100%;
@@ -37,19 +37,19 @@
     --warning: 40 90% 54%;
     --warning-foreground: 40 100% 10%;
 
-    --border: 225 12% 20% / 0.4;
-    --input: 225 10% 16% / 0.4;
+    --border: 0 0% 18% / 0.4;
+    --input: 0 0% 15% / 0.4;
     --ring: 215 100% 60%;
 
     --radius: 1rem;
 
-    --sidebar-background: 225 12% 9% / 0.5;
+    --sidebar-background: 0 0% 7% / 0.5;
     --sidebar-foreground: 0 0% 70%;
     --sidebar-primary: 215 100% 60%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 225 10% 16% / 0.4;
+    --sidebar-accent: 0 0% 15% / 0.4;
     --sidebar-accent-foreground: 0 0% 96%;
-    --sidebar-border: 225 12% 20% / 0.3;
+    --sidebar-border: 0 0% 18% / 0.3;
     --sidebar-ring: 215 100% 60%;
 
     --glow-primary: 0 0 24px hsl(215 100% 60% / 0.15);
@@ -61,13 +61,13 @@
     --font-mono: 'JetBrains Mono', monospace;
     --font-display: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
 
-    --glass-bg: hsl(225 12% 12% / 0.25);
+    --glass-bg: hsl(0 0% 11% / 0.25);
     --glass-border: hsl(0 0% 100% / 0.06);
     --glass-highlight: hsl(0 0% 100% / 0.03);
     --glass-inner-glow: inset 0 1px 0 0 hsl(0 0% 100% / 0.06);
 
-    --parallax-layer1: hsl(215 100% 60% / 0.12);
-    --parallax-layer2: hsl(275 65% 62% / 0.10);
+    --parallax-layer1: hsl(0 0% 100% / 0.04);
+    --parallax-layer2: hsl(0 0% 100% / 0.03);
     --parallax-layer3: hsl(215 80% 50% / 0.09);
   }
 
