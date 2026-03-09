@@ -246,7 +246,7 @@ const GitHubPage = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.06, type: "spring" as const, stiffness: 300, damping: 25 }}
                   onClick={() => handleSelectRepo(repo.name)}
-                  className={`w-full flex items-center justify-between p-4 text-left transition-colors hover:bg-[hsl(0_0%_100%/0.03)] ${
+                  className={`w-full flex items-center justify-between p-4 text-left transition-colors hover:bg-muted/30 ${
                     selectedRepo === repo.name ? "bg-primary/5" : ""
                   }`}
                 >

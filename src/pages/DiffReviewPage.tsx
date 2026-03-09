@@ -33,7 +33,7 @@ const DiffReviewPage = () => {
                 transition={{ delay: i * 0.08, type: "spring" as const, stiffness: 300, damping: 25 }}
                 className="glass-card rounded-2xl overflow-hidden border-warning/15"
               >
-                <div className="flex items-center justify-between p-5 border-b border-[hsl(0_0%_100%/0.04)]">
+                <div className="flex items-center justify-between p-5 border-b border-border">
                   <div className="flex items-center gap-3">
                     <LiquidIcon color="warning" size="sm" bounce={false}>
                       <FileCode className="h-4 w-4" />

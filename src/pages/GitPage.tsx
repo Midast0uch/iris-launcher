@@ -66,7 +66,7 @@ const GitPage = () => {
                   initial={{ opacity: 0, x: -8 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.04, type: "spring" as const, stiffness: 300, damping: 25 }}
-                  className="flex items-center gap-3 py-2.5 border-b border-[hsl(0_0%_100%/0.04)] last:border-0 hover:bg-[hsl(0_0%_100%/0.02)] rounded-lg px-2 -mx-2 transition-colors"
+                  className="flex items-center gap-3 py-2.5 border-b border-border last:border-0 hover:bg-muted/30 rounded-lg px-2 -mx-2 transition-colors"
                 >
                   <span className="font-mono text-xs text-primary w-16">{commit.hash}</span>
                   <span className="text-xs font-mono text-foreground flex-1">{commit.message}</span>

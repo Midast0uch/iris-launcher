@@ -121,7 +121,7 @@ const TailscalePage = () => {
                   initial={{ opacity: 0, x: -8 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.05, type: "spring" as const, stiffness: 300, damping: 25 }}
-                  className="flex items-center justify-between p-4 hover:bg-[hsl(0_0%_100%/0.02)] transition-colors"
+                  className="flex items-center justify-between p-4 hover:bg-muted/30 transition-colors"
                 >
                   <div className="flex items-center gap-3">
                     <LiquidIcon color={node.online ? "success" : "neutral"} size="sm" bounce={false}>
