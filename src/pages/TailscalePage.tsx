@@ -152,7 +152,7 @@ const TailscalePage = () => {
                 </Button>
               </div>
               {nodes.map((node) => (
-                <div key={node.id} className="flex items-center justify-between p-4 hover:bg-secondary/30 transition-colors">
+                <div key={node.id} className="flex items-center justify-between p-4 hover:bg-[hsl(0_0%_100%/0.03)] transition-colors">
                   <div className="flex items-center gap-3">
                     <div className={`h-8 w-8 rounded-md flex items-center justify-center ${
                       node.online ? "bg-success/15 border border-success/30 text-success" : "bg-secondary border border-border text-muted-foreground"
