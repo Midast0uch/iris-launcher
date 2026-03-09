@@ -121,7 +121,7 @@ const OverviewPage = () => {
                 success: "text-success",
               };
               return (
-                <div key={i} className="flex items-center gap-3 py-1.5 border-b border-border/30 last:border-0">
+                <div key={i} className="flex items-center gap-3 py-1.5 border-b border-[hsl(0_0%_100%/0.05)] last:border-0">
                   <span className="text-muted-foreground w-12">{entry.time}</span>
                   <span className={`h-1 w-1 rounded-full ${colors[entry.type].replace("text-", "bg-")}`} />
                   <span className={colors[entry.type]}>{entry.event}</span>

@@ -69,7 +69,7 @@ const DiffReviewPage = () => {
       </div>
 
       {mockPendingWrites.length === 0 && (
-        <div className="bg-card rounded-lg border border-border p-12 text-center">
+        <div className="glass rounded-xl p-12 text-center">
           <Activity className="h-8 w-8 text-muted-foreground mx-auto mb-3" />
           <p className="text-sm text-muted-foreground">No pending reviews</p>
           <p className="text-xs text-muted-foreground mt-1">Agent writes to src/ will appear here for approval</p>

@@ -71,7 +71,7 @@ const GitPage = () => {
               </div>
               <span className="text-[10px] font-mono text-muted-foreground">{commit.time}</span>
               {commit.auto && (
-                <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-secondary border border-border text-muted-foreground">AUTO</span>
+                <span className="text-[9px] font-mono px-1.5 py-0.5 rounded-md glass-subtle text-muted-foreground">AUTO</span>
               )}
             </div>
           ))}

@@ -78,7 +78,7 @@ const ProjectsPage = () => {
       </div>
 
       {/* Mode explanation */}
-      <div className="bg-card rounded-lg border border-border p-5">
+      <div className="glass rounded-xl p-5">
         <h3 className="text-sm font-bold text-foreground mb-3">Mode Reference</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
           <div className="space-y-2">

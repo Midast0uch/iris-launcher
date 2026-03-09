@@ -85,7 +85,7 @@ const RebuildPage = () => {
       </div>
 
       {/* Safety note */}
-      <div className="bg-card rounded-lg border border-border p-5">
+      <div className="glass rounded-xl p-5">
         <div className="flex items-start gap-3">
           <Wrench className="h-5 w-5 text-primary mt-0.5" />
           <div className="text-xs text-muted-foreground space-y-1">
