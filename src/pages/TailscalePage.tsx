@@ -184,7 +184,7 @@ const TailscalePage = () => {
             </div>
 
             {/* Security note */}
-            <div className="bg-card rounded-lg border border-border p-5">
+            <div className="glass rounded-xl p-5">
               <div className="flex items-start gap-3">
                 <Shield className="h-5 w-5 text-warning mt-0.5" />
                 <div className="text-xs text-muted-foreground space-y-1">
