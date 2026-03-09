@@ -2,10 +2,11 @@ import { Wrench, Play, CheckCircle, AlertTriangle, Clock } from "lucide-react";
 import { SectionHeader, DataRow, StatusBadge, MetricCard } from "@/components/dashboard/DashboardPrimitives";
 import { mockRebuildStatus } from "@/lib/mock-data";
 import { Button } from "@/components/ui/button";
+import { PageTransition } from "@/components/dashboard/PageTransition";
 
 const RebuildPage = () => {
   return (
-    <div className="space-y-8">
+    <PageTransition><div className="space-y-8">
       <SectionHeader
         title="Rebuild Pipeline"
         description="cargo build with test-before-replace — safe binary swapping"
@@ -93,7 +94,7 @@ const RebuildPage = () => {
           </div>
         </div>
       </div>
-    </div>
+    </div></PageTransition>
   );
 };
 

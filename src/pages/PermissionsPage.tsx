@@ -3,6 +3,7 @@ import { SectionHeader, StatusBadge } from "@/components/dashboard/DashboardPrim
 import { mockNetworkPermissions } from "@/lib/mock-data";
 import { Switch } from "@/components/ui/switch";
 import { useState } from "react";
+import { PageTransition } from "@/components/dashboard/PageTransition";
 
 const PermissionsPage = () => {
   const [permissions, setPermissions] = useState(mockNetworkPermissions);
@@ -14,7 +15,7 @@ const PermissionsPage = () => {
   };
 
   return (
-    <div className="space-y-8">
+    <PageTransition><div className="space-y-8">
       <SectionHeader
         title="Network Permissions"
         description="Per-skill network access control — enforced in Rust backend"
@@ -71,7 +72,7 @@ const PermissionsPage = () => {
           </div>
         </div>
       </div>
-    </div>
+    </div></PageTransition>
   );
 };
 

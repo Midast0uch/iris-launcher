@@ -77,12 +77,12 @@ export default {
       },
       keyframes: {
         "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
+          from: { height: "0", opacity: "0" },
+          to: { height: "var(--radix-accordion-content-height)", opacity: "1" },
         },
         "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
+          from: { height: "var(--radix-accordion-content-height)", opacity: "1" },
+          to: { height: "0", opacity: "0" },
         },
         "pulse-glow": {
           "0%, 100%": { opacity: "1" },
@@ -92,12 +92,38 @@ export default {
           "0%": { transform: "translateY(-100%)" },
           "100%": { transform: "translateY(100%)" },
         },
+        "fade-in": {
+          "0%": { opacity: "0", transform: "translateY(10px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        "scale-in": {
+          "0%": { transform: "scale(0.95)", opacity: "0" },
+          "100%": { transform: "scale(1)", opacity: "1" },
+        },
+        "orb-pulse": {
+          "0%, 100%": { transform: "scale(1)", boxShadow: "0 0 20px hsl(185 100% 50% / 0.3)" },
+          "50%": { transform: "scale(1.08)", boxShadow: "0 0 35px hsl(185 100% 50% / 0.6)" },
+        },
+        "orb-ring": {
+          "0%": { transform: "scale(0.8)", opacity: "0.8" },
+          "100%": { transform: "scale(2.5)", opacity: "0" },
+        },
+        "float": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-4px)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "pulse-glow": "pulse-glow 2s ease-in-out infinite",
         "scan": "scan 3s linear infinite",
+        "fade-in": "fade-in 0.4s ease-out",
+        "scale-in": "scale-in 0.3s ease-out",
+        "enter": "fade-in 0.4s ease-out, scale-in 0.3s ease-out",
+        "orb-pulse": "orb-pulse 3s ease-in-out infinite",
+        "orb-ring": "orb-ring 2s ease-out infinite",
+        "float": "float 3s ease-in-out infinite",
       },
     },
   },

@@ -3,6 +3,7 @@ import { SectionHeader, DataRow, StatusBadge, MetricCard } from "@/components/da
 import { mockIdentity } from "@/lib/mock-data";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { PageTransition } from "@/components/dashboard/PageTransition";
 
 const IdentityPage = () => {
   const [seedRevealed, setSeedRevealed] = useState(false);
@@ -20,7 +21,7 @@ const IdentityPage = () => {
   };
 
   return (
-    <div className="space-y-8">
+    <PageTransition><div className="space-y-8">
       <SectionHeader
         title="Post-Quantum Identity"
         description="Dilithium3 keypair with biometric protection via OS keychain"
@@ -112,7 +113,7 @@ const IdentityPage = () => {
           </div>
         )}
       </div>
-    </div>
+    </div></PageTransition>
   );
 };
 

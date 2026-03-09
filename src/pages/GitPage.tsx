@@ -2,10 +2,11 @@ import { FolderGit2, GitCommit, RotateCcw, AlertTriangle } from "lucide-react";
 import { SectionHeader, DataRow, StatusBadge, MetricCard } from "@/components/dashboard/DashboardPrimitives";
 import { mockGitStatus } from "@/lib/mock-data";
 import { Button } from "@/components/ui/button";
+import { PageTransition } from "@/components/dashboard/PageTransition";
 
 const GitPage = () => {
   return (
-    <div className="space-y-8">
+    <PageTransition><div className="space-y-8">
       <SectionHeader
         title="Git & Source Control"
         description="Developer Mode — every agent write is a recoverable git commit"
@@ -76,7 +77,7 @@ const GitPage = () => {
           ))}
         </div>
       </div>
-    </div>
+    </div></PageTransition>
   );
 };
 
