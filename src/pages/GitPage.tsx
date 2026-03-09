@@ -78,7 +78,7 @@ const GitPage = () => {
           ))}
         </div>
       </div>
-    </div></PageTransition>
+    </div></PageTransition></GitHubGate>
   );
 };
 

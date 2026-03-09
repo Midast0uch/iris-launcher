@@ -76,7 +76,7 @@ const DiffReviewPage = () => {
           <p className="text-xs text-muted-foreground mt-1">Agent writes to src/ will appear here for approval</p>
         </div>
       )}
-    </div></PageTransition>
+    </div></PageTransition></GitHubGate>
   );
 };
 
