@@ -1,12 +1,14 @@
 import { Activity, Cpu, HardDrive, Radio, Shield, Clock } from "lucide-react";
 import { MetricCard, SectionHeader, StatusBadge, DataRow } from "@/components/dashboard/DashboardPrimitives";
-import { mockLauncherStatus, mockIdentity, mockGitStatus, mockPendingWrites } from "@/lib/mock-data";
+import { mockLauncherStatus, mockGitStatus, mockPendingWrites } from "@/lib/mock-data";
 import { AgentOrb } from "@/components/dashboard/AgentOrb";
 import { useUptime } from "@/hooks/use-uptime";
 import { PageTransition } from "@/components/dashboard/PageTransition";
+import { useApp } from "@/contexts/AppContext";
 
 const OverviewPage = () => {
-  const uptime = useUptime(16320); // ~4h 32m
+  const uptime = useUptime(16320);
+  const { identity, mode } = useApp();
 
   return (
     <PageTransition>
@@ -39,10 +41,10 @@ const OverviewPage = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <MetricCard
             label="Mode"
-            value={mockLauncherStatus.mode.toUpperCase()}
+            value={(mode || "personal").toUpperCase()}
             icon={<Shield className="h-4 w-4" />}
-            accent={mockLauncherStatus.mode === "developer" ? "accent" : "primary"}
-            subtitle="Active project mode"
+            accent={mode === "developer" ? "accent" : "primary"}
+            subtitle={`${mode === "developer" ? "Developer" : "Personal"} mode`}
           />
           <MetricCard
             label="Uptime"
@@ -60,7 +62,7 @@ const OverviewPage = () => {
           />
           <MetricCard
             label="Node ID"
-            value={mockIdentity.nodeId.slice(0, 8)}
+            value={identity ? identity.nodeId.slice(0, 8) : "—"}
             icon={<Radio className="h-4 w-4" />}
             accent="primary"
             subtitle="Post-quantum identity"
@@ -79,7 +81,7 @@ const OverviewPage = () => {
               <DataRow label="Drive Status" value={mockLauncherStatus.driveConnected ? "Connected" : "Disconnected"} />
               <DataRow label="Crash Flag" value="Clear" />
               <DataRow label="Version" value={mockLauncherStatus.version} />
-              <DataRow label="Biometric" value={mockIdentity.biometricActive ? "Active (TPM)" : "Inactive"} />
+              <DataRow label="Biometric" value={identity ? "Active (TPM)" : "No identity"} />
             </div>
           </div>
 
