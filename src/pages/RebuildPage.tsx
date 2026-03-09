@@ -6,7 +6,7 @@ import { PageTransition } from "@/components/dashboard/PageTransition";
 
 const RebuildPage = () => {
   return (
-    <div className="space-y-8">
+    <PageTransition><div className="space-y-8">
       <SectionHeader
         title="Rebuild Pipeline"
         description="cargo build with test-before-replace — safe binary swapping"

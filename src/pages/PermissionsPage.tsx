@@ -15,7 +15,7 @@ const PermissionsPage = () => {
   };
 
   return (
-    <div className="space-y-8">
+    <PageTransition><div className="space-y-8">
       <SectionHeader
         title="Network Permissions"
         description="Per-skill network access control — enforced in Rust backend"

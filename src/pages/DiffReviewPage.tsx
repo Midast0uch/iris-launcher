@@ -6,7 +6,7 @@ import { PageTransition } from "@/components/dashboard/PageTransition";
 
 const DiffReviewPage = () => {
   return (
-    <div className="space-y-8">
+    <PageTransition><div className="space-y-8">
       <SectionHeader
         title="Diff Review"
         description="Agent writes to src/ are queued here — approve or reject before disk write"

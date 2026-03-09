@@ -21,7 +21,7 @@ const IdentityPage = () => {
   };
 
   return (
-    <div className="space-y-8">
+    <PageTransition><div className="space-y-8">
       <SectionHeader
         title="Post-Quantum Identity"
         description="Dilithium3 keypair with biometric protection via OS keychain"

@@ -6,7 +6,7 @@ import { PageTransition } from "@/components/dashboard/PageTransition";
 
 const GitPage = () => {
   return (
-    <div className="space-y-8">
+    <PageTransition><div className="space-y-8">
       <SectionHeader
         title="Git & Source Control"
         description="Developer Mode — every agent write is a recoverable git commit"

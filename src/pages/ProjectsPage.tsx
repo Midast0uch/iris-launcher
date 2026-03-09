@@ -9,7 +9,7 @@ const ProjectsPage = () => {
   const [activeProject, setActiveProject] = useState("development");
 
   return (
-    <div className="space-y-8">
+    <PageTransition><div className="space-y-8">
       <SectionHeader
         title="Projects"
         description="Manage IRIS source projects — each with independent mode and path"
