@@ -1,15 +1,15 @@
 import { User, Code2, ArrowRight } from "lucide-react";
-import { useApp } from "@/contexts/AppContext";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { LiquidIcon } from "@/components/dashboard/LiquidIcon";
+import { useIRISMode } from "@/hooks/use-iris-mode";
 
 const ModeSelectPage = () => {
-  const { setMode } = useApp();
+  const { setMode } = useIRISMode();
   const navigate = useNavigate();
 
-  const handleSelect = (mode: "personal" | "developer") => {
-    setMode(mode);
+  const handleSelect = async (mode: "personal" | "developer") => {
+    await setMode(mode);
     navigate("/");
   };
 
