@@ -31,6 +31,16 @@ export interface PendingWrite {
   content?: string;
 }
 
+export interface LauncherStatus {
+  mode: string;
+  sourceValid: boolean;
+  driveConnected: boolean;
+  agentActive: boolean;
+  pendingWrites: number;
+  uptime: string;
+  version: string;
+}
+
 export interface IRISProject {
   id: string;
   name: string;
@@ -88,6 +98,8 @@ export const irisApi = {
 
   getProjects: () =>
     apiFetch<{ projects: IRISProject[] }>("/api/projects"),
+
+  getLauncherStatus: () => apiFetch<LauncherStatus>("/api/launcher/status"),
 
   getMode: () => apiFetch<{ mode: string }>("/api/mode"),
 
