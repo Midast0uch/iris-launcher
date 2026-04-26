@@ -8,7 +8,7 @@ interface IRISStatus {
   loading: boolean;
 }
 
-const POLL_INTERVAL = 10_000; // 10s
+const POLL_INTERVAL = 30_000; // 30s — reduced from 10s; backend pushes system_status via WS
 
 export function useIRISStatus(): IRISStatus {
   const [online, setOnline] = useState(false);

@@ -10,7 +10,7 @@ export function useBackendOnline() {
   return useQuery({
     queryKey: ["iris", "online"],
     queryFn: () => irisApi.isOnline(),
-    refetchInterval: 5_000,
+    refetchInterval: 30_000, // reduced from 5s — backend pushes updates via WS system_status
     staleTime: 0,
   });
 }
@@ -19,7 +19,7 @@ export function useGitStatus() {
   return useQuery({
     queryKey: ["iris", "git", "status"],
     queryFn: () => irisApi.getGitStatus(),
-    refetchInterval: 15_000,
+    refetchInterval: 60_000, // reduced from 15s
     staleTime: STALE,
     retry: false,
   });
@@ -29,7 +29,7 @@ export function useGitLog(limit = 20) {
   return useQuery({
     queryKey: ["iris", "git", "log", limit],
     queryFn: () => irisApi.getGitLog(limit),
-    refetchInterval: 30_000,
+    refetchInterval: 60_000, // reduced from 30s
     staleTime: STALE,
     retry: false,
   });
@@ -59,7 +59,7 @@ export function usePendingWrites() {
   return useQuery({
     queryKey: ["iris", "diff", "pending"],
     queryFn: () => irisApi.getPendingWrites(),
-    refetchInterval: 5_000,
+    refetchInterval: 30_000, // reduced from 5s
     staleTime: 0,
     retry: false,
   });
