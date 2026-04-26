@@ -8,9 +8,37 @@ const ModeSelectPage = () => {
   const { setMode } = useIRISMode();
   const navigate = useNavigate();
 
+  const IRIS_APP_URL = import.meta.env.VITE_IRIS_APP_URL || "http://localhost:3000";
+
   const handleSelect = async (mode: "personal" | "developer") => {
     await setMode(mode);
-    navigate("/");
+
+    // Tauri v2: detect via the official isTauri() utility, NOT window.__TAURI__
+    // (that global was removed in v2 — the check now lives on globalThis.isTauri).
+    try {
+      const { invoke, isTauri } = await import("@tauri-apps/api/core");
+
+      if (isTauri()) {
+        // Packaged: spawn the IRIS Widget exe in the background. KEEP the
+        // launcher window open so the user can still manage settings, review
+        // diffs, and re-launch the widget from the overview page.
+        try {
+          const launched = await invoke<string>("launch_iris_widget");
+          console.log("[Launcher] IRIS Widget launched at:", launched);
+        } catch (err) {
+          console.error("[Launcher] Auto-launch failed (use the manual button):", err);
+        }
+        navigate("/");
+      } else {
+        // Standalone web dev: open the running IRIS Next.js dev server
+        window.open(IRIS_APP_URL, "_blank");
+        navigate("/");
+      }
+    } catch {
+      // @tauri-apps/api not available at all — pure web build, never spawn exe
+      window.open(IRIS_APP_URL, "_blank");
+      navigate("/");
+    }
   };
 
   return (

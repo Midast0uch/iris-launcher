@@ -1,0 +1,14 @@
+C:\Users\midas\Desktop\dev\iris-launcher\src-tauri\target\release\deps\serde-6bb2c137e8dcea0c.d: C:\Users\midas\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\lib.rs C:\Users\midas\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\integer128.rs C:\Users\midas\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\mod.rs C:\Users\midas\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\de.rs C:\Users\midas\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\ser.rs C:\Users\midas\Desktop\dev\iris-launcher\src-tauri\target\release\build\serde-66bc19ae3f142624\out/private.rs
+
+C:\Users\midas\Desktop\dev\iris-launcher\src-tauri\target\release\deps\libserde-6bb2c137e8dcea0c.rlib: C:\Users\midas\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\lib.rs C:\Users\midas\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\integer128.rs C:\Users\midas\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\mod.rs C:\Users\midas\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\de.rs C:\Users\midas\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\ser.rs C:\Users\midas\Desktop\dev\iris-launcher\src-tauri\target\release\build\serde-66bc19ae3f142624\out/private.rs
+
+C:\Users\midas\Desktop\dev\iris-launcher\src-tauri\target\release\deps\libserde-6bb2c137e8dcea0c.rmeta: C:\Users\midas\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\lib.rs C:\Users\midas\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\integer128.rs C:\Users\midas\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\mod.rs C:\Users\midas\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\de.rs C:\Users\midas\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\ser.rs C:\Users\midas\Desktop\dev\iris-launcher\src-tauri\target\release\build\serde-66bc19ae3f142624\out/private.rs
+
+C:\Users\midas\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\lib.rs:
+C:\Users\midas\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\integer128.rs:
+C:\Users\midas\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\mod.rs:
+C:\Users\midas\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\de.rs:
+C:\Users\midas\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\ser.rs:
+C:\Users\midas\Desktop\dev\iris-launcher\src-tauri\target\release\build\serde-66bc19ae3f142624\out/private.rs:
+
+# env-dep:OUT_DIR=C:\\Users\\midas\\Desktop\\dev\\iris-launcher\\src-tauri\\target\\release\\build\\serde-66bc19ae3f142624\\out

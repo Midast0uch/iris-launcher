@@ -1,7 +1,9 @@
-import { Activity, Cpu, HardDrive, Radio, Shield, Clock, WifiOff } from "lucide-react";
+import { Activity, Cpu, HardDrive, Radio, Shield, Clock, WifiOff, Play, Loader2 } from "lucide-react";
+import { useState } from "react";
 import { MetricCard, SectionHeader, StatusBadge, DataRow } from "@/components/dashboard/DashboardPrimitives";
 import { LiquidIcon } from "@/components/dashboard/LiquidIcon";
 import { AgentOrb } from "@/components/dashboard/AgentOrb";
+import { toast } from "@/hooks/use-toast";
 import { useUptime } from "@/hooks/use-uptime";
 import { useIRISStatus } from "@/hooks/use-iris-status";
 import { PageTransition } from "@/components/dashboard/PageTransition";
@@ -22,6 +24,38 @@ const OverviewPage = () => {
   const { identity, mode } = useApp();
   const { launcher, git, online, loading } = useIRISStatus();
   const uptime = useUptime(0);
+  const [launchingWidget, setLaunchingWidget] = useState(false);
+
+  const handleLaunchWidget = async () => {
+    setLaunchingWidget(true);
+    try {
+      // Tauri v2: detect via the official isTauri() utility, NOT window.__TAURI__
+      // (that global was removed in v2 — the check now lives on globalThis.isTauri).
+      const { invoke, isTauri } = await import("@tauri-apps/api/core");
+
+      if (isTauri()) {
+        const launched = await invoke<string>("launch_iris_widget");
+        toast({
+          title: "IRIS Widget launching",
+          description: `Started: ${launched}. Window appears in ~10s (cold start).`,
+        });
+      } else {
+        // Standalone web dev: open the Next.js dev server in a new tab
+        const url = import.meta.env.VITE_IRIS_APP_URL || "http://localhost:3000";
+        window.open(url, "_blank");
+        toast({ title: "Opening IRIS Widget", description: url });
+      }
+    } catch (err) {
+      toast({
+        title: "Launch failed",
+        description: String(err),
+        variant: "destructive",
+      });
+    } finally {
+      // Small delay so the spinner is visible even on instant spawns
+      setTimeout(() => setLaunchingWidget(false), 1500);
+    }
+  };
 
   const agentActive = launcher?.agentActive ?? false;
   const driveConnected = launcher?.driveConnected ?? false;
@@ -46,6 +80,27 @@ const OverviewPage = () => {
               <span className="text-xs font-mono text-success">
                 {agentActive ? "Agent Active" : "Agent Idle"}
               </span>
+              <motion.button
+                onClick={handleLaunchWidget}
+                disabled={launchingWidget}
+                whileHover={!launchingWidget ? { y: -1, transition: { type: "spring", stiffness: 400, damping: 22 } } : undefined}
+                whileTap={!launchingWidget ? { scale: 0.97 } : undefined}
+                className="glass-card ml-2 inline-flex items-center gap-2.5 rounded-xl px-3.5 py-2 text-xs font-mono uppercase tracking-[0.18em] text-foreground/80 hover:text-foreground disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-primary/20 transition-colors"
+              >
+                <LiquidIcon
+                  color={launchingWidget ? "primary" : "accent"}
+                  size="sm"
+                  bounce={!launchingWidget}
+                  className="!h-6 !w-6"
+                >
+                  {launchingWidget ? (
+                    <Loader2 className="h-3 w-3 animate-spin" />
+                  ) : (
+                    <Play className="h-3 w-3" />
+                  )}
+                </LiquidIcon>
+                <span>{launchingWidget ? "Launching" : "Launch Widget"}</span>
+              </motion.button>
             </div>
           }
         />
